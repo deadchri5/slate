@@ -1,0 +1,1579 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="images/favicon-9000afb2.ico" rel="icon" type="image/ico" />
+        <meta
+            name="description"
+            content="Documentation for the CVA SERVICES API"
+        >
+    <title>API CVA</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-d71c8c45.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-024da600.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-e4bea47f.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduccion" class="toc-h1 toc-link" data-title="Introducción">Introducción</a>
+          </li>
+          <li>
+            <a href="#autenticacion" class="toc-h1 toc-link" data-title="Autenticación">Autenticación</a>
+          </li>
+          <li>
+            <a href="#lista-de-precios" class="toc-h1 toc-link" data-title="Lista de Precios">Lista de Precios</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#buscar-catalogo-de-productos" class="toc-h2 toc-link" data-title="Buscar catálogo de productos">Buscar catálogo de productos</a>
+                  </li>
+                  <li>
+                    <a href="#buscar-un-producto-en-especifico" class="toc-h2 toc-link" data-title="Buscar un producto en específico">Buscar un producto en específico</a>
+                  </li>
+                  <li>
+                    <a href="#buscar-productos-por-marca" class="toc-h2 toc-link" data-title="Buscar productos por marca">Buscar productos por marca</a>
+                  </li>
+                  <li>
+                    <a href="#buscar-productos-por-grupo" class="toc-h2 toc-link" data-title="Buscar productos por grupo">Buscar productos por grupo</a>
+                  </li>
+                  <li>
+                    <a href="#buscar-productos-por-grupo2" class="toc-h2 toc-link" data-title="Buscar productos por grupo2">Buscar productos por grupo2</a>
+                  </li>
+                  <li>
+                    <a href="#buscar-productos-por-busqueda-generica" class="toc-h2 toc-link" data-title="Buscar productos por búsqueda genérica">Buscar productos por búsqueda genérica</a>
+                  </li>
+                  <li>
+                    <a href="#agregar-porcentaje" class="toc-h2 toc-link" data-title="Agregar porcentaje">Agregar porcentaje</a>
+                  </li>
+                  <li>
+                    <a href="#disponibilidad-en-sucursales" class="toc-h2 toc-link" data-title="Disponibilidad en sucursales">Disponibilidad en sucursales</a>
+                  </li>
+                  <li>
+                    <a href="#obtener-subgrupo-de-el-los-articulos" class="toc-h2 toc-link" data-title="Obtener subgrupo de el/los artículos">Obtener subgrupo de el/los artículos</a>
+                  </li>
+                  <li>
+                    <a href="#mostrar-tipo-de-cambio" class="toc-h2 toc-link" data-title="Mostrar tipo de cambio">Mostrar tipo de cambio</a>
+                  </li>
+                  <li>
+                    <a href="#parametro-quot-tipo-quot" class="toc-h2 toc-link" data-title="Parámetro "tipo"">Parámetro "tipo"</a>
+                  </li>
+                  <li>
+                    <a href="#parametro-quot-depto-quot" class="toc-h2 toc-link" data-title="Parámetro "Depto"">Parámetro "Depto"</a>
+                  </li>
+                  <li>
+                    <a href="#descripciones-enriquecidas" class="toc-h2 toc-link" data-title="Descripciones enriquecidas">Descripciones enriquecidas</a>
+                  </li>
+                  <li>
+                    <a href="#imagenes" class="toc-h2 toc-link" data-title="Imágenes">Imágenes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><span>Dudas o preguntas</span></li>
+            <li><span>Departamento de Desarrollo:</span></li>
+            <li></br></li>
+            <li><span>Juan Alfaro</span></li>
+            <li><a href="mailto:jalfaro@grupocva.com">jalfaro@grupocva.com</a></li>
+            <li></br></li>
+            <li><span>Ing. David Solórzano</span></li>
+            <li><a href="mailto:sdavid@grupocva.com">sdavid@grupocva.com</a></li>
+            <li></br></li>
+            <li><span>Ing. Christian Ochoa</span></li>
+            <li><a href="mailto:ochoac@grupocva.com">ochoac@grupocva.com</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduccion'>Introducción</h1>
+<p>Bienvenido a la documentacion de la API de Grupo CVA. Nuestra API proporciona una serie de endpoints diseñados para facilitar la integración y el acceso a nuestros servicios de manera eficiente y segura.</p>
+
+<p>Esta API está basada en nuestra anterior API <a href="https://www.grupocva.com/api/docs/documentationWebService.html">CVA WEB SERVICE</a>.</p>
+
+<p>Conecta tu página con nuestro Web Service y obtén en tiempo real, inventarios, precios, promociones, descripción e imágenes de producto. Ofrecemos los datos en formato <b>JSON</b>.</p>
+
+<p><strong>Términos de uso</strong></p>
+
+<p>** <em>Es muy importante tomar en cuenta el vencimiento de la promoción, las promociones mostradas pueden expirar por fecha o por existencias, así que se tiene la responsabilidad de leer el dato, y tomarlo en cuenta para cuando lo ofrezcan, así como saber que ustedes pudieron mostrar un precio y al momento que levanten el pedido pueden haber agotado existencias.</em></p>
+
+<p>** <em>Al utilizar el Webservice usted acepta el funcionamiento del mismo y que las promociones, existencias, precios y disponibilidad puede cambiar sin previo aviso, por lo que se recomienda siempre consultar en tiempo real.</em></p>
+<h1 id='autenticacion'>Autenticación</h1>
+<blockquote>
+<p>Peticíon para generar un token:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="k">echo</span> <span class="s1">'hola'</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'cva'</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Asegurate de colocar las cabeceras correctas en la petición</span>
+curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/user/login'</span> <span class="se">\</span>
+    <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'{
+        "user": "USUARIO",
+        "password": "CONTRASEÑA" 
+    }'</span>
+</code></pre></div>
+<blockquote>
+<p>Retorna un JSON con la siguiente estructura:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"usuario"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USUARIO"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"KpUIc576Pb00TJHKGaNiXyUvNR8uTE3KKB8bSJv3"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div>
+<p>Para poder acceder a los endpoints que listan productos, necesitas generar un token de autorización.</p>
+
+<p><strong>Parametros del cuerpo de la petición</strong></p>
+
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>string</td>
+<td>Tu usuario CVA</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>La contraseña de tu usuario</td>
+</tr>
+</tbody></table>
+
+<p><strong>Pasos a seguir</strong></p>
+
+<ol>
+<li><strong>Generar el token</strong>: Antes de hacer cualquier solicitud a los endpoints de productos, asegúrate de haber generado tu token.</li>
+<li><strong>Enviar el token</strong>: Cuando hagas la solicitud, incluye el token en la cabecera de todas tus solicitudes
+&quot;Authorization&quot; utilizando el esquema &quot;Bearer&quot;.</li>
+</ol>
+
+<p>Como lo siguiente:</p>
+
+<p><code>Authorization: Bearer YOUR_TOKEN</code></p>
+
+<aside class="notice">
+Tienes que reemplazar <code>YOUR_TOKEN</code> con tu token personal.
+</aside>
+
+<aside class="warning">
+El token tiene una validez de <strong>1 hora</strong> desde su generación. Una vez que caduca, es necesario generar un nuevo token.
+</aside>
+<h1 id='lista-de-precios'>Lista de Precios</h1><h2 id='buscar-catalogo-de-productos'>Buscar catálogo de productos</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="n">import</span> <span class="n">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="mf">.</span><span class="nf">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nf">get</span><span class="p">()</span>
+</code></pre></div>
+<blockquote>
+<p>Peticíon para obtener la lista de precios:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene el catalógo completo</span>
+curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios'</span> <span class="se">\</span>
+     <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+
+<span class="c"># Obtiene las impresoras de la marca HP con su información del SAT</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?marca=hp&amp;grupo=impresoras&amp;codigosat=true'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+</code></pre></div>
+<blockquote>
+<p>La petición retorna un JSON como el siguiente:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"articulos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10431032</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SWS-5678"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HW-POS-NST1789I5-W-8GB/240GB"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOFT RESTAURANT PUNTO DE VENTA POS 17 PULG/CORE I5/8GB RAM/240GB SSD/WINDOWS/VESA"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOFTWARE"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOFTWARE"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOFT RESTAURANT"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SG"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pesos"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">15877.44</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10431032.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w"> </span><span class="err">Más</span><span class="w"> </span><span class="err">artículos</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"paginacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"total_paginas"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pagina"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Este endpoint retorna la lista de los productos de catálogo disponibles.</p>
+<h3 id='peticion-http'>Petición HTTP</h3>
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios</code></p>
+
+<p><code>Authorization Bearer TU_API_TOKEN</code></p>
+<h3 id='parametros-de-la-query-query-parameters'>Parametros de la query (Query parameters)</h3>
+<p><strong>Puntos a considerar</strong></p>
+
+<ul>
+<li>Si se llama el endpoint sin ningún parametro, se asume que usted quiere consultar el cátalogo de productos completo.</li>
+<li>Es importante mencionar que los parametros &quot;codigo&quot; y &quot;clave&quot; retornarán solamente el producto que está buscando teniendo más peso &quot;clave&quot;.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código CVA del producto</td>
+</tr>
+<tr>
+<td>clave</td>
+<td>string</td>
+<td>Código del fabricante (Número de parte)</td>
+</tr>
+<tr>
+<td>marca</td>
+<td>string</td>
+<td>Nombre de la marca (Véase) <a href="http://www.grupocva.com/catalogo_clientes_xml/marcas.xml">Marcas</a></td>
+</tr>
+<tr>
+<td>grupo</td>
+<td>string</td>
+<td>Nombre del grupo (Véase) <a href="http://www.grupocva.com/catalogo_clientes_xml/grupos.xml">Grupos</a></td>
+</tr>
+<tr>
+<td>desc</td>
+<td>string</td>
+<td>Buscar mediante cadena de texto libre</td>
+</tr>
+<tr>
+<td>porcentaje</td>
+<td>float</td>
+<td>Le incrementa el porcentaje indicado al precio, para calcular utilidad</td>
+</tr>
+<tr>
+<td>MonedaPesos</td>
+<td>bool</td>
+<td>regresa el precio de todos los productos en pesos méxicanos</td>
+</tr>
+<tr>
+<td>subgrupo</td>
+<td>bool</td>
+<td>Regresa el subgrupo del producto</td>
+</tr>
+<tr>
+<td>dt</td>
+<td>bool</td>
+<td>Regresa la descripción técnica</td>
+</tr>
+<tr>
+<td>dc</td>
+<td>bool</td>
+<td>Rregresa la descripción comercial</td>
+</tr>
+<tr>
+<td>TipoProducto</td>
+<td>bool</td>
+<td>Regresa el tipo de producto, si es producto o paquete</td>
+</tr>
+<tr>
+<td>depto</td>
+<td>bool</td>
+<td>Regresa el departamento al que pertenece</td>
+</tr>
+<tr>
+<td>codigosat</td>
+<td>bool</td>
+<td>Regresa la información que el SAT requiere del</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>Número de página que quieres consultar de la respuesta</td>
+</tr>
+</tbody></table>
+<h3 id='ejemplo-de-busqueda-con-parametros'>Ejemplo de busqueda con parametros</h3>
+<p>Si desea buscar por uno o varios de los parámetros listados anteriormente, debe agregarlos a la URL en forma de query. Por ejemplo, si quiere filtrar sus resultados por la marca <em>Apple</em>, debe especificarlo en la petición de la siguiente manera:</p>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?marca=apple</code></p>
+
+<p>De esta manera usted puede buscar de una forma más especifica lo que busca</p>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?marca=hp&amp;grupo=impresoras&amp;codigosat=true</code></p>
+
+<p>** <em>Esta petición retornará las impresoras de la marca HP, con su información SAT.</em></p>
+
+<aside class="notice">
+Es importante mencionar que la consulta <b>TOTAL</b> del catálogo <strong>NO</strong> está disponible de las <strong>9:00</strong> hasta <strong>19:00</strong> (Hora ciudad de México) por lo que se recomienda ser lo más preciso como le sea posible con sus búsquedas, debido a la carga que representa en la base de datos.
+</aside>
+<h2 id='buscar-un-producto-en-especifico'>Buscar un producto en específico</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="nc">Kittn</span><span class="o">::</span><span class="nc">APIClient</span><span class="mf">.</span><span class="n">authorize</span><span class="o">!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Busqueda por clave</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=PR-2586'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+
+<span class="c"># Busqueda por número de pieza</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Cuando la búsqueda sea exitosa se retorna una respuesta como la siguiente:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10412212</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PR-2586"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6QN28A#BGJ"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMPRESORA HP OPS ENTERPRISE 5700DN, 45 PPM NEGRO/ COLOR, LASERJET, DUPLEX, USB, ETHERNET,BLUETOOTH, WIFI-DIRECT(SUSTITUTO M555DN)"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMPRESION"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMPRESORAS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HP"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pesos"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">16597.83</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10412212.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Este endpoint es el mismo que el anterior, pero si se envía como parámetro la clave CVA o el código del fabricante, el sistema asume que se desea obtener la información de ese producto en específico.</p>
+
+<p><strong>Ejemplo de busqueda</strong></p>
+
+<ul>
+<li>Busca por clave</li>
+</ul>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=PR-2586</code></p>
+
+<p>Se está buscando especificamente el producto con la clave interna de CVA &quot;PR-2586&quot;</p>
+
+<ul>
+<li>Busca por pieza</li>
+</ul>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ</code></p>
+
+<p>Se está buscando especificamente el producto por el número de pieza del fábricante &quot;6QN28A#BGJ&quot;</p>
+
+<aside class="notice">
+  Toma en cuenta que para la búsqueda individual los parámetros deben ser preciosos, asegúrate de tener correctas las claves que deseas consultar.
+</aside>
+<h2 id='buscar-productos-por-marca'>Buscar productos por marca</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="nc">Kittn</span><span class="o">::</span><span class="nc">APIClient</span><span class="mf">.</span><span class="n">authorize</span><span class="o">!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nb">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos de la marca Acteck</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?marca=acteck'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>La petición retorna un JSON como el siguiente:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"articulos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10427123</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS-978"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC-935708"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GABINETE ACTECK VIKEN GM434 / MEDIA TORRE / MICRO ATX, MINI ITX / FUENTE 500W / ILUMINACION RGB / PANEL CRISTAL TEMPLADO, METAL / BLANCO / AC-935708"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPONENTES"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GABINETES"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTECK"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pesos"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">637.26</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10427123.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w"> </span><span class="err">más</span><span class="w"> </span><span class="err">articulos</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"paginacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"total_paginas"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pagina"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Con el parámetro marca, por ejemplo, ACTECK, se obtienen todos los productos de esa marca. Consulte el 
+<a href="'http://www.grupocva.com/catalogo_clientes_xml/marcas.xml'">catálogo de marcas</a> para consultar todas las marcas.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?marca=acteck</code></p>
+
+<p>Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.</p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marca</td>
+<td>string</td>
+<td>Marca que se desea búscar</td>
+<td>null</td>
+</tr>
+<tr>
+<td>pagina</td>
+<td>int</td>
+<td>Página que se desea consultar</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2 id='buscar-productos-por-grupo'>Buscar productos por grupo</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="nc">Kittn</span><span class="o">::</span><span class="nc">APIClient</span><span class="mf">.</span><span class="n">authorize</span><span class="o">!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nb">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos de la marca Acteck</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?grupo=bocinas&amp;pagina=2'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>La petición retorna un JSON como el siguiente:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"articulos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10431052</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPK-2527"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"72D1AA"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALTAVOZ MANOS LIBRES HP POLY 72D1AA SYNC20+ M /VERSION MICROSOFT TEAMS USB-C PORTATIL CONECTIVIDAD USB Y BLUETOOTH IP64 BATERIA HASTA 20 H"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUDIO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOCINAS"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POLY"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dolares"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">157.79</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10431052.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w"> </span><span class="err">más</span><span class="w"> </span><span class="err">articulos</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"paginacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"total_paginas"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pagina"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Con el parámetro grupo, por ejemplo, &quot;Bocinas&quot;, se obtienen todos los productos que pertenezcan a ese grupo. Consulte el 
+<a href="'http://www.grupocva.com/catalogo_clientes_xml/marcas.xml'">catálogo de grupos</a> para consultar todos los disponibles.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?grupo=bocinas&amp;pagina=2</code></p>
+
+<p>Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.</p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grupo</td>
+<td>string</td>
+<td>Grupo que se desea búscar</td>
+<td>null</td>
+</tr>
+<tr>
+<td>pagina</td>
+<td>int</td>
+<td>Página que se desea consultar</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2 id='buscar-productos-por-grupo2'>Buscar productos por grupo2</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="nc">Kittn</span><span class="o">::</span><span class="nc">APIClient</span><span class="mf">.</span><span class="n">authorize</span><span class="o">!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nb">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos del grupo con ID 268</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?grupo2=268'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+
+<span class="c"># Obtiene los productos de los grupos 268 y 15462 este filtro combina bocinas con el subgrupo bafle</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?grupo2=268,15462'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>La petición retorna un JSON como el siguiente:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"articulos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10431052</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPK-2527"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"72D1AA"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALTAVOZ MANOS LIBRES HP POLY 72D1AA SYNC20+ M /VERSION MICROSOFT TEAMS USB-C PORTATIL CONECTIVIDAD USB Y BLUETOOTH IP64 BATERIA HASTA 20 H"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUDIO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOCINAS"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POLY"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dolares"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">157.79</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10431052.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10426372</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPK-2495"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PC-114017"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAFLE BLUETOOTH INALAMBRICO 8 CON MICROFONO INCLUIDO Y LUZ RGB JOY PERFECT CHOICE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUDIO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOCINAS"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERFECT CHOICE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pesos"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">1714.27</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10426372.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w"> </span><span class="err">más</span><span class="w"> </span><span class="err">articulos</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"paginacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"total_paginas"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pagina"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Con el parámetro grupo2, es otra manera de buscar por grupos, pero a diferencia de la manera tradicional, esta opcion te da la oportunidad de 
+concaternar grupos con subgrupos.</p>
+
+<p>Ten en cuenta que para buscar con el parametro grupo2, se manda el ID del/os grupos a consultar separados por coma &quot;,&quot;.</p>
+<h3 id='ejemplos-con-http-request'>Ejemplos con HTTP Request</h3>
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?grupo2=268</code></p>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?grupo2=268,15462</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grupo2</td>
+<td>string</td>
+<td>IDS de grupos a buscar separados por comas</td>
+<td>null</td>
+</tr>
+<tr>
+<td>pagina</td>
+<td>int</td>
+<td>Página que se desea consultar</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2 id='buscar-productos-por-busqueda-generica'>Buscar productos por búsqueda genérica</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="nc">Kittn</span><span class="o">::</span><span class="nc">APIClient</span><span class="mf">.</span><span class="n">authorize</span><span class="o">!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nb">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos que contengan en la descripción la palabra "GAMING"</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?desc=GAMING'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>La petición retorna un JSON como el siguiente:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"articulos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10430953</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT-9804"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"82XV00PRLM"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LAPTOP LENOVO IDEA GAMING LOQ 15IRH8 / CORE I5-12450H / 8GB DDR5 / 512GB SSD / RTX 2050 4GB / 15.6 FHD (1920X1080) / STORM GREY / WIN 11 HOME / 1 YR CS"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPUTADORAS"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PORTATILES"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LENOVO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pesos"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">12873.6</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10430953.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10427317</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS-1605"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CH-9319511-NA2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOUSE CORSAIR M65 RGB ULTRA WIRELESS /LED/ INALAMBRICO / OPTICO / 26000 DPI / GAMING/ WHITE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPONENTES"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOUSE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CORSAIR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dolares"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">98.17</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10427317.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w"> </span><span class="err">más</span><span class="w"> </span><span class="err">articulos</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"paginacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"total_paginas"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pagina"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Con el parámetro <strong>desc</strong>, puedes realizar búsquedas genéricas (realiza la búsqueda dentro de la descripcion corta de producto).
+Ejemplo: una búsqueda genérica que contenga la palabra clave <strong>GAMING</strong>.</p>
+<h3 id='ejemplos-con-http-request-2'>Ejemplos con HTTP Request</h3>
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?desc=GAMING</code></p>
+
+<p>Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.</p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>desc</td>
+<td>string</td>
+<td>Palabra clave que se buscará en la descripcion de los productos</td>
+<td>null</td>
+</tr>
+<tr>
+<td>pagina</td>
+<td>int</td>
+<td>Página que se desea consultar</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2 id='agregar-porcentaje'>Agregar porcentaje</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="nc">Kittn</span><span class="o">::</span><span class="nc">APIClient</span><span class="mf">.</span><span class="n">authorize</span><span class="o">!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nb">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos que contengan en la descripción la palabra "GAMING"</span>
+curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>La petición retorna un JSON como el siguiente:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10412212</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PR-2586"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6QN28A#BGJ"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMPRESORA HP OPS ENTERPRISE 5700DN, 45 PPM NEGRO/ COLOR, LASERJET, DUPLEX, USB, ETHERNET,BLUETOOTH, WIFI-DIRECT(SUSTITUTO M555DN)"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMPRESION"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMPRESORAS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HP"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pesos"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">19253.48</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10412212.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Con el parámetro <strong>porcentaje</strong>, permite aumentar un porcentaje sobre nuestro precio para calcular su utilidad.</p>
+<h3 id='ejemplos-con-http-request-3'>Ejemplos con HTTP Request</h3>
+<p>Subir porcentaje de 16% al producto con clave PR-2586, lo que aumentará directamente en el nodo &quot;precio&quot; del producto ese porcentaje.</p>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16</code></p>
+
+<aside class="notice">
+Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agregar el IVA en el porcentaje para contemplar el impuesto.
+</aside>
+<h3 id='aplicar-descuento-a-lista-de-productos'>Aplicar descuento a lista de productos</h3>
+<p>Aplicar el paramerametro en consultas que retornan más de un nodo aumentará el porcentaje sobre el precio en todos los nodos de la respuesta.</p>
+
+<p><code>http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?porcentaje=16</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>porcentaje</td>
+<td>int</td>
+<td>Le incrementa el porcentaje indicado al precio, para calcular utilidad</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<h2 id='disponibilidad-en-sucursales'>Disponibilidad en sucursales</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="nc">Kittn</span><span class="o">::</span><span class="nc">APIClient</span><span class="mf">.</span><span class="n">authorize</span><span class="o">!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="mf">.</span><span class="n">kittens</span><span class="mf">.</span><span class="nb">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?sucursales=true'</span> <span class="se">\</span>
+     <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>La petición retorna un JSON como el siguiente:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"articulos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w"> </span><span class="err">campos</span><span class="w"> </span><span class="err">adicionales</span><span class="w">
+            </span><span class="nl">"disponibilidad_sucursales"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEXICO CENTRO DE DISTRIBUCION"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTERREY CENTRO DE DISTRIBUCION"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS CANCUN"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS CHIHUAHUA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS COLIMA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS CULIACAN"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS DF TALLER"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS HERMOSILLO"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS LEON"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS MERIDA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS MONTERREY"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS MORELIA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS OAXACA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS PACHUCA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS PUEBLA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS QUERETARO"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS TEPIC"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS TOLUCA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS TORREON"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS TUXTLA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS VERACRUZ"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VENTAS VILLAHERMOSA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TOTAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w"> </span><span class="err">más</span><span class="w"> </span><span class="err">productos</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>Consulta la disponibilidad de el/los productos en cada una de las sucursales.</p>
+<h3 id='ejemplos-con-http-request-4'>Ejemplos con HTTP Request</h3>
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?sucursales=true</code></p>
+
+<p>Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sucursales</td>
+<td>bool</td>
+<td>Mostrará la existencia del producto en cada una de las sucursales</td>
+<td>false</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+El Precio de un producto puede variar de una sucursal a otra así como el precio del flete depende de la distancia origen y destino.
+</aside>
+<h2 id='obtener-subgrupo-de-el-los-articulos'>Obtener subgrupo de el/los artículos</h2>
+<p>Si el parametro <code>subgrupo = true</code> se agrega a la respuesta el nodo en el que indica el subgrupo del producto.</p>
+
+<p>Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=KB-890&amp;subgpo=true'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div>
+<blockquote>
+<p>La petición agrega a la respuesta JSON la llave:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"subgrupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GAMERS"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='ejemplos-http-request'>Ejemplos HTTP REQUEST</h3>
+<p>Obtener el subgrupo del producto con clave: KB-890</p>
+
+<p><code>http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=KB-890&amp;subgpo=true</code></p>
+
+<p>Obtener el subgrupo de todos los articulos de una lista de productos</p>
+
+<p><code>http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?subgpo=true</code></p>
+<h3 id='query-parameters-7'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subgpo</td>
+<td>bool</td>
+<td>Mostrará el nombre del subgrupo del producto</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h2 id='mostrar-tipo-de-cambio'>Mostrar tipo de cambio</h2>
+<p>Si el parámetro <code>tc = true</code> se añadirán los campos de valor de tipo de cambio de dólar y su última fecha de actualización por nuestra parte, si está en cero o no incluyes el parámetro no se mostrá el elemento en la respuesta.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=KB-890&amp;tc=true'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div>
+<blockquote>
+<p>La petición agrega a la respuesta JSON las llaves:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"tipo_cambio"</span><span class="p">:</span><span class="w"> </span><span class="mf">18.07</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fecha_actualizacion_tipo_cambio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19/07/2024 11:04:18"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='ejemplos-http-request-2'>Ejemplos HTTP REQUEST</h3>
+<p>Obtener el producto con clave: <strong>KB-890</strong> con su tipo de cambio</p>
+
+<p><code>http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=KB-890&amp;tc=true</code></p>
+<h3 id='query-parameters-8'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tc</td>
+<td>bool</td>
+<td>Mostrará el tipo de cambio</td>
+<td>false</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de CVA, sujeto a cambios durante el día sin previo aviso (es por eso que también te estamos brindando la fecha de última actualización del tc), <b>SE RECOMIENDA</b> realizar las actualizaciones en tiempo real, de esa manera siempre se tiene el precio actualizado incluso con los cambios que se puedan generar en el día.
+</aside>
+<h2 id='parametro-quot-tipo-quot'>Parámetro &quot;tipo&quot;</h2>
+<p>Si el parámetro <code>tipo = true</code> entonces la API te agregará una llave al JSON de respuesta <strong>&quot;TipoProducto&quot;</strong>  Este es el equivalente para el servicio web de los “productos por salir” estos productos están disponibles solo hasta agotar existencias y no genera backorder o sea que no compran aunque sean solicitados (se ponen por salir porque es posible que ni el proveedor siga surtiendo el producto o este descontinuado), ósea que se debe limitar a ofrecer la existencia mostrada.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=SPK-2093&amp;tipo=true'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div>
+<blockquote>
+<p>La petición agrega a la respuesta JSON las llaves:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"tipo_producto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXISTENCIA"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='ejemplos-http-request-3'>Ejemplos HTTP REQUEST</h3>
+<p>Obtener el producto con clave: <strong>SPK-2093</strong> con su tipo de cambio</p>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=SPK-2093&amp;tipo=true</code></p>
+<h3 id='query-parameters-9'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipo</td>
+<td>bool</td>
+<td>Mostrará el tipo de producto</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h2 id='parametro-quot-depto-quot'>Parámetro &quot;Depto&quot;</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=SPK-2093&amp;depto=true'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div>
+<blockquote>
+<p>La petición agrega a la respuesta JSON las llaves:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"departamento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1261</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POR SALIR"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>CVA clasifica los productos de acuerdo a su tiempo de vida o de acuerdo a su forma de adquirir o comprar el producto, al activar el parámetro
+ <code>depto = true</code> la respuesta regresará una llave dentro de la respuesta JSON llamada <strong>&quot;Departamento&quot;</strong> en donde puede contener una serie de nomenclaturas.</p>
+<h3 id='significado-de-las-nomenclaturas'>Significado de las nomenclaturas</h3>
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Significado</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>A</td>
+<td>PRODUCTO CON VENTA ALTA LOS PRODUCTOS TIENEN UNA EXISTENCIA ALTA Y REGULAR EN LAS SUCURSALES.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>PRODUCTO CON VENTAS MEDIAS LOS PRODUCTOS TIENEN MEDIANA EXISTENCIA Y SU RESURTIDO ES REGULAR.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>PRODUCTO CON BAJAS VENTAS ESTE PRODUCTO MANTIENE UN INVENTARIO BAJO.</td>
+</tr>
+<tr>
+<td>POR SALIR</td>
+<td>YA NO SE SURTE Y ESTARA LIMITADA A LAS EXISTENCIAS ACTUALES.</td>
+</tr>
+<tr>
+<td>S P C D</td>
+<td>SE TIENE EXISTENCIA EN EL CENTRO DE DISTRIBUCION</td>
+</tr>
+<tr>
+<td>SPF</td>
+<td>PRODUCTOS BAJO PEDIDO.</td>
+</tr>
+</tbody></table>
+<h3 id='ejemplos-http-request-4'>Ejemplos HTTP REQUEST</h3>
+<p>Obtener el producto con clave: <strong>SPK-2093</strong> con su departamento.</p>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=SPK-2093&amp;depto=true</code></p>
+<h3 id='query-parameters-10'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>depto</td>
+<td>bool</td>
+<td>Mostrará el departamento del poroducto</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h2 id='descripciones-enriquecidas'>Descripciones enriquecidas</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=SPK-2093&amp;dt=true&amp;dc=true'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div>
+<blockquote>
+<p>La petición agrega a la respuesta JSON las llaves:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"ficha_tecnica"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HEADSET - MAGENTA ( TIPO DIADEMA ) - TAMANO BOCINA: 40MM- INDEPENDIENCIA: 32 ohms±15%- SENSIBILIDAD: 108 dB±3db- RANGO DE FRECUENCIA: 20Hz 2000Hz- MICROFONO: 6MM X 5MM- SENSIBILIDAD DE MICROFONO: -38dB±3db- INDEPENDENCIA DE MICROFONO: 2200ohms- DIRECCION: TODAS LAS DIRECCIONES- LARGO DE LINEA: 2.2M±15%- VOLTAJE DE TRABAJO DE LED : 5V cc- CORRIENTE DE TRABAJO: 100mA- INTERFAZ DE AURICULAR:  USB+3.5- CONTROL DE AUDIO- MICROFONO RETRACTIL CON CANCELACION DE RUIDO- ADAPTADOR DE AUDIO PARA PC- CABLE CON RECUBRIMIENTO EN NAILON- OREJAS DESMONTABLES - COMPATIBLE CON: XBOX, PLAYSTATION, WINDOWS, ANDROID, LINUX Y MAC- UN ANO DE GARANTIA"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ficha_comercial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JUEGA COMO UN PROFECIONAL CON LOS HEADSET </span><span class="se">\"</span><span class="s2">OGH03</span><span class="se">\"</span><span class="s2"> DISENADOS PARA UN VERDADERO GAMER.DISFRUTA DEL MEJOR RENDIMINETO DE AUDIO CON LA MEJOR COMODIDAD GRACIAS A SUS ALHOMADILLAS BIEN ALCOCHONADAS QUE TE PERMITEN MANTENER EL RUIDO EXTERIOR AL MINIMO Y DISFRUTAR DE UN SONIDO CLARO, MICROFONO CON CANCELACION DE RUIDO PARA UNA COMUNICACION CLARA MIENTRAS JUEGAS.- COMPATIBLE CON: XBOX, PLAYSTATION, WINDOWS, ANDROID, LINUX Y MAC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Usted tiene la opción de mandar los parametros <code>dt = true</code> y <code>dc = true</code> </p>
+
+<p>El parámetro <code>dt</code> se encarga de agregar la información técnica dentro de la respuesta JSON.</p>
+
+<p>El parámetro <code>dc</code> se encarga de agregar la información comercial dentro de la respuesta JSON.</p>
+<h3 id='query-parameters-11'>Query parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dt</td>
+<td>bool</td>
+<td>Mostrará la descripción técnica del producto</td>
+<td>false</td>
+</tr>
+<tr>
+<td>dc</td>
+<td>bool</td>
+<td>Mostrará la descripción comercial del producto</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h3 id='ejemplos-http-request-5'>Ejemplos HTTP REQUEST</h3>
+<p>Obtener el producto con clave: <strong>SPK-2093</strong> con sus descripciones.</p>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=SPK-2093&amp;dt=true&amp;dc=true</code></p>
+
+<p>✅ Los parámetros no dependen entre sí, por lo que puede solicitar únicamente el que necesita.</p>
+
+<p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
+<h2 id='imagenes'>Imágenes</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=SPK-2093&amp;images=true'</span> <span class="se">\</span>
+      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div>
+<blockquote>
+<p>La petición agrega a la respuesta JSON las llaves:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10253052</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPK-2093"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OGH03"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUDIFONOS GAMER OCELOT TIPO DIADEMA/OVER-EAR/USB/3.5MM/COLOR ROSA CON NEGRO/ALAMBRICOS/ILUMINACION BLANCA/CONTROL DE AUDIO/MICROFONO CANCELACION DE RUIDO/AJUSTABLES/MULTIPLATAFORMA"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUDIO"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUDIFONOS Y MICRO"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCELOT GAMING"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dolares"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.89</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10253052.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">61</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"imagenes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"https://www.grupocva.com/detalle_articulo/img_large.php?id=323327"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"https://www.grupocva.com/detalle_articulo/img_large.php?id=323331"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"https://www.grupocva.com/detalle_articulo/img_large.php?id=323330"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"https://www.grupocva.com/detalle_articulo/img_large.php?id=323328"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"https://www.grupocva.com/detalle_articulo/img_large.php?id=323329"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Para obtener imágenes de alta resolución de tu producto tiene que enviar el parámeto <code>images = true</code></p>
+<h3 id='query-parameters-12'>Query parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>images</td>
+<td>bool</td>
+<td>Mostrará el arreglo de imágenes ligadas al producto</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h3 id='ejemplos-http-request-6'>Ejemplos HTTP REQUEST</h3>
+<p>Obtener el producto con clave: <strong>SPK-2093</strong> con sus imágenes.</p>
+
+<p><code>GET http://api-cvaservices.test/api/v1/catalogo_clientes/lista_precios?clave=SPK-2093&amp;images=true</code></p>
+
+<p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
+
+<p>⚠️ No todos los productos tienen imágenes, por lo que algunos regresan el valor <code>null</code></p>
+
+<aside class="warning">
+<b>NO</b> se recomienda enviar este parámetro en consultas que devuelvan una lista extensa de productos, ya que esto puede <b>aumentar</b> 
+drásticamente el <b>tiempo de respuesta</b> de la API. Se aconseja utilizar este parámetro únicamente en consultas individuales para garantizar
+un rendimiento óptimo.
+</aside>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
