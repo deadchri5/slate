@@ -1,0 +1,19 @@
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/fast_blank-1.0.1/ext/fast_blank
+C:/Ruby33-x64/bin/ruby.exe extconf.rb
+creating Makefile
+
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/fast_blank-1.0.1/ext/fast_blank
+make DESTDIR\= sitearchdir\=./.gem.20240717-19220-qflo9r sitelibdir\=./.gem.20240717-19220-qflo9r clean
+
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/fast_blank-1.0.1/ext/fast_blank
+make DESTDIR\= sitearchdir\=./.gem.20240717-19220-qflo9r sitelibdir\=./.gem.20240717-19220-qflo9r
+generating fast_blank-x64-mingw-ucrt.def
+compiling fast_blank.c
+linking shared-object fast_blank.so
+
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/fast_blank-1.0.1/ext/fast_blank
+make DESTDIR\= sitearchdir\=./.gem.20240717-19220-qflo9r sitelibdir\=./.gem.20240717-19220-qflo9r install
+/usr/bin/install -c -m 0755 fast_blank.so ./.gem.20240717-19220-qflo9r
+
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/fast_blank-1.0.1/ext/fast_blank
+make DESTDIR\= sitearchdir\=./.gem.20240717-19220-qflo9r sitelibdir\=./.gem.20240717-19220-qflo9r clean

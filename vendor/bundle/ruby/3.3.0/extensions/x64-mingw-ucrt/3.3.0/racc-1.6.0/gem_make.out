@@ -1,0 +1,21 @@
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/racc-1.6.0/ext/racc/cparse
+C:/Ruby33-x64/bin/ruby.exe extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/racc-1.6.0/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240717-19220-pq1388 sitelibdir\=./.gem.20240717-19220-pq1388 clean
+
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/racc-1.6.0/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240717-19220-pq1388 sitelibdir\=./.gem.20240717-19220-pq1388
+generating cparse-x64-mingw-ucrt.def
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/racc-1.6.0/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240717-19220-pq1388 sitelibdir\=./.gem.20240717-19220-pq1388 install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20240717-19220-pq1388/racc
+
+current directory: C:/Users/ochoac/projects/api-cvaservices-doc/slate/vendor/bundle/ruby/3.3.0/gems/racc-1.6.0/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240717-19220-pq1388 sitelibdir\=./.gem.20240717-19220-pq1388 clean
