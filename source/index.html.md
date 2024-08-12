@@ -3,9 +3,6 @@ title: API CVA
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell
-  - php
-  - python
-  - javascript
 
 toc_footers:
   - <span>Dudas o preguntas</span>
@@ -29,7 +26,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the CVA SERVICES API
+    content: Documentación para los CVA SERVICES API
 ---
 
 # Introducción
@@ -75,12 +72,6 @@ curl --location 'http://api-cvaservices.test/api/v2/user/login' \
 }
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
 Para poder acceder a los endpoints que listan productos, necesitas generar un token de autorización.
 
 **Parametros del cuerpo de la petición**
@@ -111,12 +102,6 @@ El token tiene una validez de <strong>1 hora</strong> desde su generación. Una 
 
 ## Catálogo completo
 
-```php
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
 > Peticíon para obtener la lista de precios:
 
 ```shell
@@ -127,13 +112,6 @@ curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_prec
 # Obtiene las impresoras de la marca HP con su información del SAT
 curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=hp&grupo=impresoras&codigosat=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
 ```
 
 > La petición retorna un JSON como el siguiente:
@@ -181,8 +159,8 @@ Parametro | Tipo | Descripción
 --------- | ----------- | -----------
 codigo  | string | Código CVA del producto
 clave  | string | Código del fabricante (Número de parte)
-marca  | string | Nombre de la marca (Véase) [Marcas](http://www.grupocva.com/catalogo_clientes_xml/marcas.xml)
-grupo  | string | Nombre del grupo (Véase) [Grupos](http://www.grupocva.com/catalogo_clientes_xml/grupos.xml)
+marca  | string | Nombre de la marca (Véase) [Marcas](#marcas)
+grupo  | string | Nombre del grupo (Véase) [Grupos](#grupos)
 desc  | string | Buscar mediante cadena de texto libre
 porcentaje  | float | Le incrementa el porcentaje indicado al precio, para calcular utilidad
 MonedaPesos | bool | regresa el precio de todos los productos en pesos méxicanos
@@ -222,13 +200,6 @@ curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_pre
 # Busqueda por número de pieza
 curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ' \
       --header 'Authorization: Bearer TU_API_TOKEN'
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
 ```
 
 > Cuando la búsqueda sea exitosa se retorna una respuesta como la siguiente:
@@ -384,19 +355,6 @@ grupo | string | Grupo que se desea búscar | null
 
 ## Por grupo2
 
-```php
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
 > Buscar productos por grupo2
 
 ```shell
@@ -407,13 +365,6 @@ curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_pre
 # Obtiene los productos de los grupos 268 y 15462 este filtro combina bocinas con el subgrupo bafle
 curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462' \
       --header 'Authorization: Bearer TU_API_TOKEN'
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
 ```
 
 > La petición retorna un JSON como el siguiente:
@@ -484,13 +435,6 @@ grupo2 | string | IDS de grupos a buscar separados por comas | null
 # Obtiene los productos que contengan en la descripción la palabra "GAMING"
 curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?desc=GAMING' \
       --header 'Authorization: Bearer TU_API_TOKEN'
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
 ```
 
 > La petición retorna un JSON como el siguiente:
