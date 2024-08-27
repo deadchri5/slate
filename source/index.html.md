@@ -51,7 +51,7 @@ Aunque podemos proveerle el catálogo completo para que se actualice cada que us
 
 ```shell
 # Asegurate de colocar las cabeceras correctas en la petición
-curl --location 'http://api-cvaservices.test/api/v2/user/login' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/user/login' \
     --header 'Content-Type: application/json' \
     --data '{
         "user": "USUARIO",
@@ -89,10 +89,10 @@ password | string | La contraseña de tu usuario
 
 Como lo siguiente:
 
-`Authorization: Bearer YOUR_TOKEN`
+`Authorization: Bearer TU_API_TOKEN`
 
 <aside class="notice">
-Tienes que reemplazar <code>YOUR_TOKEN</code> con tu token personal.
+Tienes que reemplazar <code>TU_API_TOKEN</code> con tu token personal.
 </aside>
 <aside class="warning">
 El token tiene una validez de <strong>1 hora</strong> desde su generación. Una vez que caduca, es necesario generar un nuevo token.
@@ -106,11 +106,11 @@ El token tiene una validez de <strong>1 hora</strong> desde su generación. Una 
 
 ```shell
 # Obtiene el catalógo completo
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 
 # Obtiene las impresoras de la marca HP con su información del SAT
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=hp&grupo=impresoras&codigosat=true' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=hp&grupo=impresoras&codigosat=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -144,7 +144,7 @@ Este endpoint retorna la lista de los productos de catálogo disponibles.
 
 ### Petición HTTP
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios`
 
 `Authorization Bearer TU_API_TOKEN`
 
@@ -176,11 +176,11 @@ page | int | Número de página que quieres consultar de la respuesta
 
 Si desea buscar por uno o varios de los parámetros listados anteriormente, debe agregarlos a la URL en forma de query. Por ejemplo, si quiere filtrar sus resultados por la marca *Apple*, debe especificarlo en la petición de la siguiente manera:
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=apple`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=apple`
 
 De esta manera usted puede buscar de una forma más especifica lo que busca
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=hp&grupo=impresoras&codigosat=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=hp&grupo=impresoras&codigosat=true`
 
 ** *Esta petición retornará las impresoras de la marca HP, con su información SAT.*
 
@@ -194,11 +194,11 @@ Es importante mencionar que la consulta <b>TOTAL</b> del catálogo <strong>NO</s
 
 ```shell
 # Busqueda por clave
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 
 # Busqueda por número de pieza
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -223,21 +223,33 @@ curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_pre
 }
 ```
 
-Este endpoint es el mismo que el anterior, pero si se envía como parámetro la clave CVA o el código del fabricante, el sistema asume que se desea obtener la información de ese producto en específico.
+A diferencia del el anterior, si se envía como parámetro la clave CVA o el código del fabricante, el sistema asume que se desea obtener la información de ese producto en específico.
 
 **Ejemplo de busqueda**
 
 - Busca por clave
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586`
 
 Se está buscando especificamente el producto con la clave interna de CVA "PR-2586"
 
+### Query Parameters
+
+Parametro | Tipo | Descripción | Valor por defecto
+--------- | ----------- | ----------- | -----------
+clave | string |clave que se desea búscar | null
+
 - Busca por pieza
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ`
 
 Se está buscando especificamente el producto por el número de pieza del fábricante "6QN28A#BGJ"
+
+### Query Parameters
+
+Parametro | Tipo | Descripción | Valor por defecto
+--------- | ----------- | ----------- | -----------
+codigo | string |código de fabricante que se desea búscar | null
 
 <aside class="notice">
   Toma en cuenta que para la búsqueda individual los parámetros deben ser precisos, asegúrate de tener correctas las claves que deseas consultar.
@@ -249,7 +261,7 @@ Se está buscando especificamente el producto por el número de pieza del fábri
 
 ```shell
 # Obtiene los productos de la marca Acteck
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=acteck' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=acteck' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -286,7 +298,7 @@ Consulte el [catálogo de marcas](#marcas) para consultar todas las opciones.
 
 ### HTTP Request
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=acteck`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=acteck`
 
 Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.
 
@@ -304,7 +316,7 @@ marca | string |Marca que se desea búscar | null
 
 ```shell
 # Obtiene los productos de la marca Acteck
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo=bocinas' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo=bocinas' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -342,7 +354,7 @@ Consulte el [catálogo de grupos](#grupos) para consultar todas las opciones.
 
 ### HTTP Request
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo=bocinas`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo=bocinas`
 
 Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.
 
@@ -359,11 +371,11 @@ grupo | string | Grupo que se desea búscar | null
 
 ```shell
 # Obtiene los productos del grupo con ID 268
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo2=268' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 
 # Obtiene los productos de los grupos 268 y 15462 este filtro combina bocinas con el subgrupo bafle
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -416,9 +428,9 @@ Ten en cuenta que para buscar con el parametro grupo2, se manda el ID del/os gru
 
 ### Ejemplos con HTTP Request
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo2=268`
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462`
 
 ### Query Parameters
 
@@ -433,7 +445,7 @@ grupo2 | string | IDS de grupos a buscar separados por comas | null
 
 ```shell
 # Obtiene los productos que contengan en la descripción la palabra "GAMING"
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?desc=GAMING' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?desc=GAMING' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -484,7 +496,7 @@ Ejemplo: una búsqueda genérica que contenga la palabra clave **GAMING**.
 
 ### Ejemplos con HTTP Request
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?desc=GAMING`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?desc=GAMING`
 
 Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.
 
@@ -505,7 +517,7 @@ para su uso entre las 9:00 AM y las 7:00 PM, debido al ancho de banda que consum
 
 ```shell
 # Obtiene los productos que contengan en la descripción la palabra "GAMING"
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=acteck&Solucion=21' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=acteck&Solucion=21' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -562,7 +574,7 @@ Consulte el [catálogo de soluciones](#soluciones) para consultar todas las opci
 
 ### Ejemplos con HTTP Request
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=acteck&Solucion=21`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=acteck&Solucion=21`
 
 ### Query Parameters
 
@@ -576,7 +588,7 @@ Solucion | int | Este parametro aplicará el filtro con la solución | null
 
 ```shell
 # Obtiene los productos que contengan en la descripción la palabra "GAMING"
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&TipoCompra=true' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&TipoCompra=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -623,7 +635,7 @@ Si activas este parámetro, recuerda que el precio especial solo se respeta si l
 
 ```shell
 # Obtiene los productos que contengan en la descripción la palabra "GAMING"
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&porcentaje=16' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&porcentaje=16' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -654,7 +666,7 @@ Con el parámetro **porcentaje**, permite aumentar un porcentaje sobre nuestro p
 
 Subir porcentaje de 16% al producto con clave PR-2586, lo que aumentará directamente en el nodo "precio" del producto ese porcentaje.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&porcentaje=16`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&porcentaje=16`
 
 
 <aside class="notice">
@@ -665,7 +677,7 @@ Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agr
 
 Aplicar el paramerametro en consultas que retornan más de un nodo aumentará el porcentaje sobre el precio en todos los nodos de la respuesta.
 
-`http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&porcentaje=16`
+`https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&porcentaje=16`
 
 ### Query Parameters
 
@@ -678,7 +690,7 @@ porcentaje | int | Le incrementa el porcentaje indicado al precio, para calcular
 > Promociones:
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=ghia&promos=true' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=ghia&promos=true' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -730,11 +742,11 @@ promos | bool | Mostrará la información de la promoción que se encontró | fa
 
 - Obtener todos los productos de la marca "_GHIA_", con sus promociones.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=ghia&promos=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=ghia&promos=true`
 
 - Obtener el producto con clave "_PCGHIA-3454_", con sus promociones.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PCGHIA-3454&promos=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PCGHIA-3454&promos=true`
 
 ✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
 
@@ -750,12 +762,67 @@ Es crucial tener en cuenta el vencimiento de las promociones. Las promociones pu
 
 ** *Al utilizar el Webservice usted acepta el funcionamiento del mismo y que las promociones, existencias, precios y disponibilidad puede cambiar sin previo aviso, por lo que se recomienda siempre consultar en tiempo real.*
 
+## Cambiar precio a pesos
+
+> Obtener productos con precio en pesos mexicanos:
+
+```shell
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=ocelot%20gaming&MonedaPesos=true' \
+     --header 'Authorization: Bearer TU_API_TOKEN'
+```
+
+> La petición modificará a la respuesta JSON la llave "precio":
+
+```json
+{
+    "articulos": [
+        {
+            "id": 10415032,
+            "clave": "CS-947",
+            "codigo_fabricante": "BLUE WARTHOG",
+            "descripcion": "GABINETE OCELOT GAMING BLANCO MODELO Y DISEÑO ANIME BLUE WARTHOG/MEDIA TORRE/SOPORTA 8 VENTILADORES DE 120MM/SOPORTA GPU 3400MM/CRISTAL TEMPLADO/SIN FUENTE/FACTOR DE FORMA ATX/ FRONTAL LISO.",
+            "principal": "COMPONENTES",
+            "grupo": "GABINETES",
+            "disponible": 2,
+            "marca": "OCELOT GAMING",
+            "garantia": "1 AÑO",
+            "clase": "AC",
+            "moneda": "Pesos",
+            "precio": 755.76,
+            "imagen": "https://www.grupocva.com/detalle_articulo/10415032.jpg",
+            "disponibleCD": 108
+        },
+        ...
+    ]
+}
+```
+
+Si requieres todos los precios en pesos mexicanos ya que algunos productos tienen el precio en dólares.
+
+`MonedaPesos = true` retorna los productos en MN con el tipo de cambio actual.
+
+Se recomienda usar el parámetro aunado al parámetro `tc = true` para ver el tipo de cambio. [Ver](#mostrar-tipo-de-cambio)
+
+<aside class="notice">
+ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de CVA, sujeto a cambios durante el día sin previo aviso (es por eso que también te estamos brindando la fecha de última actualización del tc), <b>SE RECOMIENDA</b> realizar las actualizaciones en tiempo real, de esa manera siempre se tiene el precio actualizado incluso con los cambios que se puedan generar en el día.
+</aside>
+
+### Query parameters
+
+Parametro | Tipo | Descripción | Valor por defecto
+--------- | ----------- | ----------- | -----------
+MonedaPesos | bool | Cambia el precio a pesos (Si estan en dólares) | false
+
+✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
+
+⚠️ No todos los productos tienen promociones, por lo que algunos regresan el valor `null` en su lugar.
+
 ## Manejo de paquetes
 
 > Ejemplo de solicitud
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PAQ-586&TipoProducto=true' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PAQ-586&TipoProducto=true' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -818,7 +885,7 @@ las claves CVA de cada componente que conforma el pedido.
 > Disponibilidad en sucursales
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=CV-1856&sucursales=true' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=CV-1856&sucursales=true' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -933,11 +1000,11 @@ Consulta la disponibilidad de el/los productos en cada una de las sucursales.
 
 - Busca la disponibilidad en sucursales del producto con clave "_CV-1856_"
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=CV-1856&sucursales=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=CV-1856&sucursales=true`
 
 - Busca la disponibilidad en sucursales de todos los productos de la marca "_ghia_"
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=ghia&sucursales=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=ghia&sucursales=true`
 
 
 ✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
@@ -961,7 +1028,7 @@ Si el parametro `subgrupo = true` se agrega a la respuesta el nodo en el que ind
 > Obtener subgrupo de el/los artículos
 
 ```shell
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-890&subgpo=true' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-890&subgpo=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -977,11 +1044,11 @@ curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_pre
 
 Obtener el subgrupo del producto con clave: KB-890
 
-`http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-890&subgpo=true`
+`https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-890&subgpo=true`
 
 Obtener el subgrupo de todos los articulos de una lista de productos
 
-`http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?subgpo=true`
+`https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?subgpo=true`
 
 ### Query Parameters
 
@@ -996,7 +1063,7 @@ Si el parámetro `tc = true` se añadirán los campos de valor de tipo de cambio
 > Mostrar tipo de cambio
 
 ```shell
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-890&tc=true' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-890&tc=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1013,7 +1080,7 @@ curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_pre
 
 Obtener el producto con clave: **KB-890** con su tipo de cambio
 
-`http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-890&tc=true`
+`https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-890&tc=true`
 
 ### Query Parameters
 
@@ -1034,7 +1101,7 @@ Si el parámetro `tipo = true` entonces la API te agregará una llave al JSON de
 > Parámetro "tipo"
 
 ```shell
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&tipo=true' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&tipo=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1050,7 +1117,7 @@ curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_pre
 
 Obtener el producto con clave: **SPK-2093** con su tipo de cambio
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&tipo=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&tipo=true`
 
 ### Query Parameters
 
@@ -1065,7 +1132,7 @@ tipo | bool | Mostrará el tipo de producto | false
 > Parámetro "Depto"
 
 ```shell
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&depto=true' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&depto=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1098,7 +1165,7 @@ SPF | PRODUCTOS BAJO PEDIDO.
 
 Obtener el producto con clave: **SPK-2093** con su departamento.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&depto=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&depto=true`
 
 ### Query Parameters
 
@@ -1113,7 +1180,7 @@ depto | bool | Mostrará el departamento del producto | false
 > Descripciones enriquecidas
 
 ```shell
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&dt=true&dc=true' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&dt=true&dc=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1143,7 +1210,7 @@ dc | bool | Mostrará la descripción comercial del producto | false
 
 Obtener el producto con clave: **SPK-2093** con sus descripciones.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&dt=true&dc=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&dt=true&dc=true`
 
 ✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
 
@@ -1152,7 +1219,7 @@ Obtener el producto con clave: **SPK-2093** con sus descripciones.
 > Agregar UPC a la respuesta del producto
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=PHILIPS&upc=true' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=PHILIPS&upc=true' \
 --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1176,7 +1243,7 @@ upc | bool | Mostrará el código univesal del producto | false
 
 Obtener el UPC de los productos de la marca `Philips`.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=PHILIPS&upc=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=PHILIPS&upc=true`
 
 ✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
 
@@ -1185,7 +1252,7 @@ Obtener el UPC de los productos de la marca `Philips`.
 > Agregar información del SAT a la respuesta del producto
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-645&codigosat=true' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-645&codigosat=true' \
 --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1210,7 +1277,7 @@ codigosat | bool | Mostrará el id y la descripción SAT del producto | false
 
 Obtener la información SAT del producto `KB-645`.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-645&codigosat=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-645&codigosat=true`
 
 ✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
 
@@ -1219,7 +1286,7 @@ Obtener la información SAT del producto `KB-645`.
 > Imágenes
 
 ```shell
-curl  --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&images=true' \
+curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&images=true' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1266,7 +1333,7 @@ images | bool | Mostrará el arreglo de imágenes ligadas al producto | false
 
 Obtener el producto con clave: **SPK-2093** con sus imágenes.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&images=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&images=true`
 
 ✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
 
@@ -1284,7 +1351,7 @@ un rendimiento óptimo.
 
 ```shell
 # Obtiene los productos que contengan en la descripción la palabra "GAMING"
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=FRE-6&dimen=true' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=FRE-6&dimen=true' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1323,11 +1390,17 @@ curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_prec
 Para consultar las dimensiones de un producto, utiliza el parámetro `dimen=1` Este parámetro retornará las dimensiones en metros 
 y el peso en kilogramos.
 
+### Query Parameters
+
+Parametro | Tipo | Descripción | Valor por defecto
+--------- | ----------- | ----------- | -----------
+dimen | bool |si es true, se el endpoint regresa las dimensiones del producto | false
+
 ### Ejemplos con HTTP Request
 
 Obtener el producto con clave "_FRE-6_" con sus dimensiones. 
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=FRE-6&dimen=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=FRE-6&dimen=true`
 
 ✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
 
@@ -1337,7 +1410,7 @@ Obtener el producto con clave "_FRE-6_" con sus dimensiones.
 
 ```shell
 # Obtiene los el tránsito a sucursal
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=CSP-438&trans=true' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=CSP-438&trans=true' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1355,7 +1428,7 @@ Utilizando el parámetro `trans=1` podemos obtener la cantidad en tránsito a la
 
 Obtener el producto con clave "_CSP-438_" con su cantidad en tránsito. 
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=CSP-438&trans=true`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=CSP-438&trans=true`
 
 ✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.
 
@@ -1373,7 +1446,7 @@ trans | bool | Mostrará la cantidad en tránsito a la sucursal | false
 
 ```shell
 # Obtiene los productos que contengan en la descripción la palabra "GAMING"
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/informacion_tecnica?clave=RELOJ-27' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/informacion_tecnica?clave=RELOJ-27' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1481,7 +1554,7 @@ Para ello, debes utilizar el parámetro `clave`.
 
 Obtener la información técnica del prodcuto con clave **_RELOJ-27_**.
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/informacion_tecnica?clave=RELOJ-27`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/informacion_tecnica?clave=RELOJ-27`
 
 
 <aside class="notice">
@@ -1496,7 +1569,7 @@ Para consultar esta información es necesario enviar tu token de acceso.
 > Petición para obtener las imágenes
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/imagenes_alta?clave=PC-6150' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/imagenes_alta?clave=PC-6150' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1526,7 +1599,7 @@ clave | string | Clave CVA del producto | false
 
 Obtener imágenes del producto con clave "_PC-6150_". 
 
-`GET http://api-cvaservices.test/api/v2/catalogo_clientes/imagenes_alta?clave=PC-6150`
+`GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/imagenes_alta?clave=PC-6150`
 
 
 ⚠️ No todos los productos tienen imágenes, por lo que algunos regresan el valor `null`.
@@ -1538,7 +1611,7 @@ Obtener imágenes del producto con clave "_PC-6150_".
 > Catálogo de marcas
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/marcas'
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/marcas'
 ```
 
 > json de respuesta
@@ -1578,7 +1651,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 > Catálogo de marcas 2
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/marcas2'
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/marcas2'
 ```
 
 > json de respuesta
@@ -1623,7 +1696,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 > Catálogo Grupos
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/grupos'
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/grupos'
 ```
 
 > json de respuesta
@@ -1668,7 +1741,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 > Catálogo de soluciones
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/soluciones'
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/soluciones'
 ```
 
 > json de respuesta
@@ -1711,7 +1784,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 > Obtener las ciudades
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/ciudades'
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/ciudades'
 ```
 
 > json de respuesta
@@ -1787,7 +1860,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 > Obtener las ciudades
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/sucursales'
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/sucursales'
 ```
 
 > json de respuesta
@@ -1836,7 +1909,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 > Obtener las paqueterías
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/catalogo_clientes/paqueteria'
+curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/paqueteria'
 ```
 
 > json de respuesta
@@ -1878,7 +1951,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 > Lista tus pedidos
 
 ```shell
-curl --location --request POST 'http://api-cvaservices.test/api/v2/pedidos_web/lista_pedidos' \
+curl --location --request POST 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/lista_pedidos' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1929,7 +2002,7 @@ Obtiene los pedidos del usuario.
 > Ver las ordenes de compra
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/pedidos_web/pedido_orden_compra' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/pedido_orden_compra' \
 --header 'Authorization: Bearer TU_API_TOKEN' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -1961,7 +2034,7 @@ Devuelve los pedidos de la orden de compra.
 > Ver la información de las facturas
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/pedidos_web/consultar_factura' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/consultar_factura' \
 --header 'Authorization: Bearer TU_API_TOKEN' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -2023,7 +2096,7 @@ En el ejemplo de respuesta se puede ver como es la estructura que regresa el end
 ## Consultar pedido
 
 ```shell
-curl --location 'http://api-cvaservices.test/api/v2/pedidos_web/consultar_pedido' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/consultar_pedido' \
 --header 'Authorization: Bearer TU_API_TOKEN' \
 --header 'Content-Type: application/json' \
 --data '{

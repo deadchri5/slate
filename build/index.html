@@ -8,7 +8,7 @@
     <link href="images/favicon-9000afb2.ico" rel="icon" type="image/ico" />
         <meta
             name="description"
-            content="Documentation for the CVA SERVICES API"
+            content="Documentación para los CVA SERVICES API"
         >
     <title>API CVA</title>
 
@@ -309,7 +309,7 @@
               <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Buscar">
+          <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
@@ -324,7 +324,7 @@
           </li>
           <li>
             <a href="#filtro-de-productos" class="toc-h1 toc-link" data-title="Filtro de productos">Filtro de productos</a>
-              <ul class="toc-list-h2 active" style="display: block;">
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#catalogo-completo" class="toc-h2 toc-link" data-title="Catálogo completo">Catálogo completo</a>
                   </li>
@@ -350,7 +350,7 @@
           </li>
           <li>
             <a href="#parametros-adicionales" class="toc-h1 toc-link" data-title="Parametros adicionales">Parametros adicionales</a>
-              <ul class="toc-list-h2 active" style="display: block;">
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#precio-especial-me" class="toc-h2 toc-link" data-title="Precio especial ME">Precio especial ME</a>
                   </li>
@@ -359,6 +359,9 @@
                   </li>
                   <li>
                     <a href="#promociones" class="toc-h2 toc-link" data-title="Promociones">Promociones</a>
+                  </li>
+                  <li>
+                    <a href="#cambiar-precio-a-pesos" class="toc-h2 toc-link" data-title="Cambiar precio a pesos">Cambiar precio a pesos</a>
                   </li>
                   <li>
                     <a href="#manejo-de-paquetes" class="toc-h2 toc-link" data-title="Manejo de paquetes">Manejo de paquetes</a>
@@ -400,7 +403,7 @@
           </li>
           <li>
             <a href="#informacion-tecnica" class="toc-h1 toc-link" data-title="Información técnica">Información técnica</a>
-              <ul class="toc-list-h2 active" style="display: block;">
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#obtener-la-informacion-tecnica-de-un-producto" class="toc-h2 toc-link" data-title="Obtener la información técnica de un producto">Obtener la información técnica de un producto</a>
                   </li>
@@ -408,7 +411,7 @@
           </li>
           <li>
             <a href="#imagenes-2" class="toc-h1 toc-link" data-title="Imágenes">Imágenes</a>
-              <ul class="toc-list-h2 active" style="display: block;">
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#imagenes-de-mejor-calidad" class="toc-h2 toc-link" data-title="Imágenes de mejor calidad">Imágenes de mejor calidad</a>
                   </li>
@@ -416,7 +419,7 @@
           </li>
           <li>
             <a href="#catalogos" class="toc-h1 toc-link" data-title="Catálogos">Catálogos</a>
-              <ul class="toc-list-h2 active" style="display: block;">
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#marcas" class="toc-h2 toc-link" data-title="Marcas">Marcas</a>
                   </li>
@@ -442,7 +445,7 @@
           </li>
           <li>
             <a href="#pedidos-web" class="toc-h1 toc-link" data-title="Pedidos Web">Pedidos Web</a>
-              <ul class="toc-list-h2 active" style="display: block;">
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#listado" class="toc-h2 toc-link" data-title="Listado">Listado</a>
                   </li>
@@ -481,7 +484,7 @@
         <h1 id='introduccion'>Introducción</h1>
 <p>Bienvenido a la documentacion de la API de Grupo CVA. Nuestra API proporciona una serie de endpoints diseñados para facilitar la integración y el acceso a nuestros servicios de manera eficiente y segura.</p>
 
-<p>Esta API está basada en nuestra anterior API <a href="https://www.grupocva.com/api/docs/documentationWebService.html" target="_blank">CVA WEB SERVICE</a>.</p>
+<p>Esta API está basada en nuestra anterior API <a href="https://www.grupocva.com/api/docs/documentationWebService.html">CVA WEB SERVICE</a>.</p>
 
 <p>Conecta tu página con nuestro Web Service y obtén en tiempo real, inventarios, precios, promociones, descripción e imágenes de producto. Ofrecemos los datos en formato <b>JSON</b>.</p>
 <h1 id='consideraciones'>Consideraciones</h1>
@@ -495,7 +498,7 @@
 <p>Peticíon para generar un token:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Asegurate de colocar las cabeceras correctas en la petición</span>
-curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/user/login'</span> <span class="se">\</span>
+curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/user/login'</span> <span class="se">\</span>
     <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s1">'{
         "user": "USUARIO",
@@ -547,10 +550,10 @@ curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices
 
 <p>Como lo siguiente:</p>
 
-<p><code>Authorization: Bearer YOUR_TOKEN</code></p>
+<p><code>Authorization: Bearer TU_API_TOKEN</code></p>
 
 <aside class="notice">
-Tienes que reemplazar <code>YOUR_TOKEN</code> con tu token personal.
+Tienes que reemplazar <code>TU_API_TOKEN</code> con tu token personal.
 </aside>
 
 <aside class="warning">
@@ -561,11 +564,11 @@ El token tiene una validez de <strong>1 hora</strong> desde su generación. Una 
 <p>Peticíon para obtener la lista de precios:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene el catalógo completo</span>
-curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios'</span> <span class="se">\</span>
+curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 
 <span class="c"># Obtiene las impresoras de la marca HP con su información del SAT</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=hp&amp;grupo=impresoras&amp;codigosat=true'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=hp&amp;grupo=impresoras&amp;codigosat=true'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -595,7 +598,7 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 </span></code></pre></div>
 <p>Este endpoint retorna la lista de los productos de catálogo disponibles.</p>
 <h3 id='peticion-http'>Petición HTTP</h3>
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios</code></p>
 
 <p><code>Authorization Bearer TU_API_TOKEN</code></p>
 <h3 id='parametros-de-la-query-query-parameters'>Parametros de la query (Query parameters)</h3>
@@ -626,12 +629,12 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 <tr>
 <td>marca</td>
 <td>string</td>
-<td>Nombre de la marca (Véase) <a href="http://www.grupocva.com/catalogo_clientes_xml/marcas.xml">Marcas</a></td>
+<td>Nombre de la marca (Véase) <a href="#marcas">Marcas</a></td>
 </tr>
 <tr>
 <td>grupo</td>
 <td>string</td>
-<td>Nombre del grupo (Véase) <a href="http://www.grupocva.com/catalogo_clientes_xml/grupos.xml">Grupos</a></td>
+<td>Nombre del grupo (Véase) <a href="#grupos">Grupos</a></td>
 </tr>
 <tr>
 <td>desc</td>
@@ -687,11 +690,11 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 <h3 id='ejemplo-de-busqueda-con-parametros'>Ejemplo de busqueda con parametros</h3>
 <p>Si desea buscar por uno o varios de los parámetros listados anteriormente, debe agregarlos a la URL en forma de query. Por ejemplo, si quiere filtrar sus resultados por la marca <em>Apple</em>, debe especificarlo en la petición de la siguiente manera:</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=apple</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=apple</code></p>
 
 <p>De esta manera usted puede buscar de una forma más especifica lo que busca</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=hp&amp;grupo=impresoras&amp;codigosat=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=hp&amp;grupo=impresoras&amp;codigosat=true</code></p>
 
 <p>** <em>Esta petición retornará las impresoras de la marca HP, con su información SAT.</em></p>
 
@@ -703,11 +706,11 @@ Es importante mencionar que la consulta <b>TOTAL</b> del catálogo <strong>NO</s
 <p>Buscar un producto en específico</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Busqueda por clave</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 
 <span class="c"># Busqueda por número de pieza</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -730,7 +733,7 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
     </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Este endpoint es el mismo que el anterior, pero si se envía como parámetro la clave CVA o el código del fabricante, el sistema asume que se desea obtener la información de ese producto en específico.</p>
+<p>A diferencia del el anterior, si se envía como parámetro la clave CVA o el código del fabricante, el sistema asume que se desea obtener la información de ese producto en específico.</p>
 
 <p><strong>Ejemplo de busqueda</strong></p>
 
@@ -738,17 +741,49 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 <li>Busca por clave</li>
 </ul>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586</code></p>
 
 <p>Se está buscando especificamente el producto con la clave interna de CVA &quot;PR-2586&quot;</p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clave</td>
+<td>string</td>
+<td>clave que se desea búscar</td>
+<td>null</td>
+</tr>
+</tbody></table>
 
 <ul>
 <li>Busca por pieza</li>
 </ul>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?codigo=6QN28A#BGJ</code></p>
 
 <p>Se está buscando especificamente el producto por el número de pieza del fábricante &quot;6QN28A#BGJ&quot;</p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>código de fabricante que se desea búscar</td>
+<td>null</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
   Toma en cuenta que para la búsqueda individual los parámetros deben ser precisos, asegúrate de tener correctas las claves que deseas consultar.
@@ -758,7 +793,7 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 <p>Buscar productos por marca</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos de la marca Acteck</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=acteck'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=acteck'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -790,10 +825,10 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 
 <p>Consulte el <a href="#marcas">catálogo de marcas</a> para consultar todas las opciones.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=acteck</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=acteck</code></p>
 
 <p>Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.</p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -814,7 +849,7 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 <p>Buscar productos por grupo</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos de la marca Acteck</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo=bocinas'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo=bocinas'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -846,10 +881,10 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 
 <p>Consulte el <a href="#grupos">catálogo de grupos</a> para consultar todas las opciones.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo=bocinas</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo=bocinas</code></p>
 
 <p>Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.</p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -870,11 +905,11 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 <p>Buscar productos por grupo2</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos del grupo con ID 268</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo2=268'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 
 <span class="c"># Obtiene los productos de los grupos 268 y 15462 este filtro combina bocinas con el subgrupo bafle</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -923,10 +958,10 @@ concaternar grupos con subgrupos.</p>
 
 <p>Ten en cuenta que para buscar con el parametro grupo2, se manda el ID del/os grupos a consultar separados por coma &quot;,&quot;.</p>
 <h3 id='ejemplos-con-http-request'>Ejemplos con HTTP Request</h3>
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo2=268</code></p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo2=268,15462</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -947,7 +982,7 @@ concaternar grupos con subgrupos.</p>
 <p>Buscar productos por búsqueda genérica</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos que contengan en la descripción la palabra "GAMING"</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?desc=GAMING'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?desc=GAMING'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -994,10 +1029,10 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 <p>Con el parámetro <strong>desc</strong>, puedes realizar búsquedas genéricas (realiza la búsqueda dentro de la descripcion corta de producto).
 Ejemplo: una búsqueda genérica que contenga la palabra clave <strong>GAMING</strong>.</p>
 <h3 id='ejemplos-con-http-request-2'>Ejemplos con HTTP Request</h3>
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?desc=GAMING</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?desc=GAMING</code></p>
 
 <p>Este parámetro no distingue entre mayúsculas y minúsculas, por lo que puede realizar su búsqueda independientemente del uso de letras minúsculas o mayúsculas.</p>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='query-parameters-6'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1023,7 +1058,7 @@ para su uso entre las 9:00 AM y las 7:00 PM, debido al ancho de banda que consum
 <p>Buscar productos por solución</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos que contengan en la descripción la palabra "GAMING"</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=acteck&amp;Solucion=21'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=acteck&amp;Solucion=21'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1075,8 +1110,8 @@ la marca Acteck.</p>
 
 <p>Consulte el <a href="#soluciones">catálogo de soluciones</a> para consultar todas las opciones.</p>
 <h3 id='ejemplos-con-http-request-3'>Ejemplos con HTTP Request</h3>
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=acteck&amp;Solucion=21</code></p>
-<h3 id='query-parameters-5'>Query Parameters</h3>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=acteck&amp;Solucion=21</code></p>
+<h3 id='query-parameters-7'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1093,7 +1128,7 @@ la marca Acteck.</p>
 </tr>
 </tbody></table>
 <h1 id='parametros-adicionales'>Parametros adicionales</h1><h2 id='precio-especial-me'>Precio especial ME</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos que contengan en la descripción la palabra "GAMING"</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;TipoCompra=true'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;TipoCompra=true'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1119,7 +1154,7 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Los productos tienen un precio especial cuando se ordenan a través del sistema ME. Para que el Webservice muestre este precio, debes utilizar el parámetro <code>TipoCompra = true</code>. Por defecto, se muestran los precios aplicables al levantar los productos en la sucursal.</p>
-<h3 id='query-parameters-6'>Query Parameters</h3>
+<h3 id='query-parameters-8'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1146,7 +1181,7 @@ Si activas este parámetro, recuerda que el precio especial solo se respeta si l
 <p>Agregar porcentaje</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos que contengan en la descripción la palabra "GAMING"</span>
-curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16'</span> <span class="se">\</span>
+curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1173,7 +1208,7 @@ curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservice
 <h3 id='ejemplos-con-http-request-4'>Ejemplos con HTTP Request</h3>
 <p>Subir porcentaje de 16% al producto con clave PR-2586, lo que aumentará directamente en el nodo &quot;precio&quot; del producto ese porcentaje.</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16</code></p>
 
 <aside class="notice">
 Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agregar el IVA en el porcentaje para contemplar el impuesto.
@@ -1181,8 +1216,8 @@ Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agr
 <h3 id='aplicar-descuento-a-lista-de-productos'>Aplicar descuento a lista de productos</h3>
 <p>Aplicar el paramerametro en consultas que retornan más de un nodo aumentará el porcentaje sobre el precio en todos los nodos de la respuesta.</p>
 
-<p><code>http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16</code></p>
-<h3 id='query-parameters-7'>Query Parameters</h3>
+<p><code>https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16</code></p>
+<h3 id='query-parameters-9'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1202,7 +1237,7 @@ Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agr
 <blockquote>
 <p>Promociones:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=ghia&amp;promos=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=ghia&amp;promos=true'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1241,7 +1276,7 @@ Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agr
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>En CVA, manejamos una lista de promociones disponibles para nuestros productos. Si un producto tiene más de una promoción aplicable, siempre seleccionamos la que ofrece el mejor descuento. Para activar la aplicación de promociones, utiliza el parámetro <code>promos = true</code></p>
-<h3 id='query-parameters-8'>Query parameters</h3>
+<h3 id='query-parameters-10'>Query parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1262,13 +1297,13 @@ Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agr
 <li>Obtener todos los productos de la marca &quot;<em>GHIA</em>&quot;, con sus promociones.</li>
 </ul>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=ghia&amp;promos=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=ghia&amp;promos=true</code></p>
 
 <ul>
 <li>Obtener el producto con clave &quot;<em>PCGHIA-3454</em>&quot;, con sus promociones.</li>
 </ul>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PCGHIA-3454&amp;promos=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PCGHIA-3454&amp;promos=true</code></p>
 
 <p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
 
@@ -1281,11 +1316,72 @@ Es crucial tener en cuenta el vencimiento de las promociones. Las promociones pu
 </aside>
 
 <p>** <em>Al utilizar el Webservice usted acepta el funcionamiento del mismo y que las promociones, existencias, precios y disponibilidad puede cambiar sin previo aviso, por lo que se recomienda siempre consultar en tiempo real.</em></p>
+<h2 id='cambiar-precio-a-pesos'>Cambiar precio a pesos</h2>
+<blockquote>
+<p>Obtener productos con precio en pesos mexicanos:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=ocelot%20gaming&amp;MonedaPesos=true'</span> <span class="se">\</span>
+     <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
+</code></pre></div>
+<blockquote>
+<p>La petición modificará a la respuesta JSON la llave &quot;precio&quot;:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"articulos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10415032</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS-947"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"codigo_fabricante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLUE WARTHOG"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GABINETE OCELOT GAMING BLANCO MODELO Y DISEÑO ANIME BLUE WARTHOG/MEDIA TORRE/SOPORTA 8 VENTILADORES DE 120MM/SOPORTA GPU 3400MM/CRISTAL TEMPLADO/SIN FUENTE/FACTOR DE FORMA ATX/ FRONTAL LISO."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPONENTES"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"grupo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GABINETES"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponible"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCELOT GAMING"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"garantia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 AÑO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pesos"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">755.76</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"imagen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.grupocva.com/detalle_articulo/10415032.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"disponibleCD"</span><span class="p">:</span><span class="w"> </span><span class="mi">108</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Si requieres todos los precios en pesos mexicanos ya que algunos productos tienen el precio en dólares.</p>
+
+<p><code>MonedaPesos = true</code> retorna los productos en MN con el tipo de cambio actual.</p>
+
+<p>Se recomienda usar el parámetro aunado al parámetro <code>tc = true</code> para ver el tipo de cambio. <a href="#mostrar-tipo-de-cambio">Ver</a></p>
+
+<aside class="notice">
+ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de CVA, sujeto a cambios durante el día sin previo aviso (es por eso que también te estamos brindando la fecha de última actualización del tc), <b>SE RECOMIENDA</b> realizar las actualizaciones en tiempo real, de esa manera siempre se tiene el precio actualizado incluso con los cambios que se puedan generar en el día.
+</aside>
+<h3 id='query-parameters-11'>Query parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>MonedaPesos</td>
+<td>bool</td>
+<td>Cambia el precio a pesos (Si estan en dólares)</td>
+<td>false</td>
+</tr>
+</tbody></table>
+
+<p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
+
+<p>⚠️ No todos los productos tienen promociones, por lo que algunos regresan el valor <code>null</code> en su lugar.</p>
 <h2 id='manejo-de-paquetes'>Manejo de paquetes</h2>
 <blockquote>
 <p>Ejemplo de solicitud</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=PAQ-586&amp;TipoProducto=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PAQ-586&amp;TipoProducto=true'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1359,7 +1455,7 @@ las claves CVA de cada componente que conforma el pedido.</p></li>
 <blockquote>
 <p>Disponibilidad en sucursales</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=CV-1856&amp;sucursales=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=CV-1856&amp;sucursales=true'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1473,16 +1569,16 @@ las claves CVA de cada componente que conforma el pedido.</p></li>
 <li>Busca la disponibilidad en sucursales del producto con clave &quot;<em>CV-1856</em>&quot;</li>
 </ul>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=CV-1856&amp;sucursales=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=CV-1856&amp;sucursales=true</code></p>
 
 <ul>
 <li>Busca la disponibilidad en sucursales de todos los productos de la marca &quot;<em>ghia</em>&quot;</li>
 </ul>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=ghia&amp;sucursales=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=ghia&amp;sucursales=true</code></p>
 
 <p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
-<h3 id='query-parameters-9'>Query Parameters</h3>
+<h3 id='query-parameters-12'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1510,7 +1606,7 @@ El Precio de un producto puede variar de una sucursal a otra así como el precio
 <blockquote>
 <p>Obtener subgrupo de el/los artículos</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-890&amp;subgpo=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-890&amp;subgpo=true'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1522,12 +1618,12 @@ El Precio de un producto puede variar de una sucursal a otra así como el precio
 </span></code></pre></div><h3 id='ejemplos-http-request-2'>Ejemplos HTTP REQUEST</h3>
 <p>Obtener el subgrupo del producto con clave: KB-890</p>
 
-<p><code>http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-890&amp;subgpo=true</code></p>
+<p><code>https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-890&amp;subgpo=true</code></p>
 
 <p>Obtener el subgrupo de todos los articulos de una lista de productos</p>
 
-<p><code>http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?subgpo=true</code></p>
-<h3 id='query-parameters-10'>Query Parameters</h3>
+<p><code>https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?subgpo=true</code></p>
+<h3 id='query-parameters-13'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1549,7 +1645,7 @@ El Precio de un producto puede variar de una sucursal a otra así como el precio
 <blockquote>
 <p>Mostrar tipo de cambio</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-890&amp;tc=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-890&amp;tc=true'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1562,8 +1658,8 @@ El Precio de un producto puede variar de una sucursal a otra así como el precio
 </span></code></pre></div><h3 id='ejemplos-http-request-3'>Ejemplos HTTP REQUEST</h3>
 <p>Obtener el producto con clave: <strong>KB-890</strong> con su tipo de cambio</p>
 
-<p><code>http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-890&amp;tc=true</code></p>
-<h3 id='query-parameters-11'>Query Parameters</h3>
+<p><code>https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-890&amp;tc=true</code></p>
+<h3 id='query-parameters-14'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1591,7 +1687,7 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 <blockquote>
 <p>Parámetro &quot;tipo&quot;</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;tipo=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;tipo=true'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1603,8 +1699,8 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 </span></code></pre></div><h3 id='ejemplos-http-request-4'>Ejemplos HTTP REQUEST</h3>
 <p>Obtener el producto con clave: <strong>SPK-2093</strong> con su tipo de cambio</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;tipo=true</code></p>
-<h3 id='query-parameters-12'>Query Parameters</h3>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;tipo=true</code></p>
+<h3 id='query-parameters-15'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1626,7 +1722,7 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 <blockquote>
 <p>Parámetro &quot;Depto&quot;</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;depto=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;depto=true'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1676,8 +1772,8 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 <h3 id='ejemplos-http-request-5'>Ejemplos HTTP REQUEST</h3>
 <p>Obtener el producto con clave: <strong>SPK-2093</strong> con su departamento.</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;depto=true</code></p>
-<h3 id='query-parameters-13'>Query Parameters</h3>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;depto=true</code></p>
+<h3 id='query-parameters-16'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1699,7 +1795,7 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 <blockquote>
 <p>Descripciones enriquecidas</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;dt=true&amp;dc=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;dt=true&amp;dc=true'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1715,7 +1811,7 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 <p>El parámetro <code>dt</code> se encarga de agregar la información técnica dentro de la respuesta JSON.</p>
 
 <p>El parámetro <code>dc</code> se encarga de agregar la información comercial dentro de la respuesta JSON.</p>
-<h3 id='query-parameters-14'>Query parameters</h3>
+<h3 id='query-parameters-17'>Query parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1740,14 +1836,14 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 <h3 id='ejemplos-http-request-6'>Ejemplos HTTP REQUEST</h3>
 <p>Obtener el producto con clave: <strong>SPK-2093</strong> con sus descripciones.</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;dt=true&amp;dc=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;dt=true&amp;dc=true</code></p>
 
 <p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
 <h2 id='upc'>UPC</h2>
 <blockquote>
 <p>Agregar UPC a la respuesta del producto</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=PHILIPS&amp;upc=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=PHILIPS&amp;upc=true'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1758,7 +1854,7 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Para obtener el UPC <em>(Código Universal de Producto)</em> de producto se debe añadir el parametro <code>upc = true</code></p>
-<h3 id='query-parameters-15'>Query parameters</h3>
+<h3 id='query-parameters-18'>Query parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1777,14 +1873,14 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 <h3 id='ejemplos-http-request-7'>Ejemplos HTTP REQUEST</h3>
 <p>Obtener el UPC de los productos de la marca <code>Philips</code>.</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?marca=PHILIPS&amp;upc=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=PHILIPS&amp;upc=true</code></p>
 
 <p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
 <h2 id='informacion-sat'>Información SAT</h2>
 <blockquote>
 <p>Agregar información del SAT a la respuesta del producto</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-645&amp;codigosat=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-645&amp;codigosat=true'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1796,7 +1892,7 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Para obtener la descripción del SAT <em>(Servicio de Administración Tributaria)</em> del producto se debe añadir el parametro <code>codigosat = true</code></p>
-<h3 id='query-parameters-16'>Query parameters</h3>
+<h3 id='query-parameters-19'>Query parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1815,14 +1911,14 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 <h3 id='ejemplos-http-request-8'>Ejemplos HTTP REQUEST</h3>
 <p>Obtener la información SAT del producto <code>KB-645</code>.</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=KB-645&amp;codigosat=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=KB-645&amp;codigosat=true</code></p>
 
 <p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
 <h2 id='imagenes'>Imágenes</h2>
 <blockquote>
 <p>Imágenes</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;images=true'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;images=true'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1856,7 +1952,7 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
 
 <p>Esta forma de consultar imágenes resulta más conveniente, sin embargo si sólo requiere lás imágenes sin ninguna información extra, es
 recomendable usar <a href="#imagenes-2">Imágenes</a>.</p>
-<h3 id='query-parameters-17'>Query parameters</h3>
+<h3 id='query-parameters-20'>Query parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1875,7 +1971,7 @@ recomendable usar <a href="#imagenes-2">Imágenes</a>.</p>
 <h3 id='ejemplos-http-request-9'>Ejemplos HTTP REQUEST</h3>
 <p>Obtener el producto con clave: <strong>SPK-2093</strong> con sus imágenes.</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;images=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=SPK-2093&amp;images=true</code></p>
 
 <p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
 
@@ -1891,7 +1987,7 @@ un rendimiento óptimo.
 <p>Agregar porcentaje</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos que contengan en la descripción la palabra "GAMING"</span>
-curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=FRE-6&amp;dimen=true'</span> <span class="se">\</span>
+curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=FRE-6&amp;dimen=true'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1927,10 +2023,26 @@ curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices
 </span></code></pre></div>
 <p>Para consultar las dimensiones de un producto, utiliza el parámetro <code>dimen=1</code> Este parámetro retornará las dimensiones en metros 
 y el peso en kilogramos.</p>
+<h3 id='query-parameters-21'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Valor por defecto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dimen</td>
+<td>bool</td>
+<td>si es true, se el endpoint regresa las dimensiones del producto</td>
+<td>false</td>
+</tr>
+</tbody></table>
 <h3 id='ejemplos-con-http-request-6'>Ejemplos con HTTP Request</h3>
 <p>Obtener el producto con clave &quot;<em>FRE-6</em>&quot; con sus dimensiones. </p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=FRE-6&amp;dimen=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=FRE-6&amp;dimen=true</code></p>
 
 <p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
 <h2 id='transito-a-sucursal'>Transito a sucursal</h2>
@@ -1938,7 +2050,7 @@ y el peso en kilogramos.</p>
 <p>Obtener el transito a sucursal</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los el tránsito a sucursal</span>
-curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=CSP-438&amp;trans=true'</span> <span class="se">\</span>
+curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=CSP-438&amp;trans=true'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1952,10 +2064,10 @@ curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices
 <h3 id='ejemplos-con-http-request-7'>Ejemplos con HTTP Request</h3>
 <p>Obtener el producto con clave &quot;<em>CSP-438</em>&quot; con su cantidad en tránsito. </p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/lista_precios?clave=CSP-438&amp;trans=true</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=CSP-438&amp;trans=true</code></p>
 
 <p>✅ Este parámetro se puede aplicar tanto a consultas que retornan un solo producto como a aquellas que devuelven una lista de productos.</p>
-<h3 id='query-parameters-18'>Query parameters</h3>
+<h3 id='query-parameters-22'>Query parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -1976,7 +2088,7 @@ curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices
 <p>Obtener información técnica del producto</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos que contengan en la descripción la palabra "GAMING"</span>
-curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/informacion_tecnica?clave=RELOJ-27'</span> <span class="se">\</span>
+curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/informacion_tecnica?clave=RELOJ-27'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -2080,7 +2192,7 @@ Para ello, debes utilizar el parámetro <code>clave</code>.</p>
 <h3 id='ejemplos-con-http-request-8'>Ejemplos con HTTP Request</h3>
 <p>Obtener la información técnica del prodcuto con clave <strong><em>RELOJ-27</em></strong>.</p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/informacion_tecnica?clave=RELOJ-27</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/informacion_tecnica?clave=RELOJ-27</code></p>
 
 <aside class="notice">
 Para consultar esta información es necesario enviar tu token de acceso.
@@ -2089,7 +2201,7 @@ Para consultar esta información es necesario enviar tu token de acceso.
 <blockquote>
 <p>Petición para obtener las imágenes</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/imagenes_alta?clave=PC-6150'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/imagenes_alta?clave=PC-6150'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -2106,7 +2218,7 @@ Para consultar esta información es necesario enviar tu token de acceso.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>También tienes la opción de obtener las imágenes en la misma búsqueda del producto (véase <a href="#imagenes">Imágenes</a>). Sin embargo, si usted solamente requiere las imágenes del producto, es mejor usar este endpoint, ya que es una consulta mejor optimizada.</p>
-<h3 id='query-parameters-19'>Query parameters</h3>
+<h3 id='query-parameters-23'>Query parameters</h3>
 <table><thead>
 <tr>
 <th>Parametro</th>
@@ -2125,14 +2237,14 @@ Para consultar esta información es necesario enviar tu token de acceso.
 <h3 id='ejemplos-con-http-request-9'>Ejemplos con HTTP Request</h3>
 <p>Obtener imágenes del producto con clave &quot;<em>PC-6150</em>&quot;. </p>
 
-<p><code>GET http://api-cvaservices.test/api/v2/catalogo_clientes/imagenes_alta?clave=PC-6150</code></p>
+<p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/imagenes_alta?clave=PC-6150</code></p>
 
 <p>⚠️ No todos los productos tienen imágenes, por lo que algunos regresan el valor <code>null</code>.</p>
 <h1 id='catalogos'>Catálogos</h1><h2 id='marcas'>Marcas</h2>
 <blockquote>
 <p>Catálogo de marcas</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/marcas'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/marcas'</span>
 </code></pre></div>
 <blockquote>
 <p>json de respuesta</p>
@@ -2168,7 +2280,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Catálogo de marcas 2</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/marcas2'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/marcas2'</span>
 </code></pre></div>
 <blockquote>
 <p>json de respuesta</p>
@@ -2209,7 +2321,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Catálogo Grupos</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/grupos'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/grupos'</span>
 </code></pre></div>
 <blockquote>
 <p>json de respuesta</p>
@@ -2250,7 +2362,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Catálogo de soluciones</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/soluciones'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/soluciones'</span>
 </code></pre></div>
 <blockquote>
 <p>json de respuesta</p>
@@ -2290,7 +2402,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Obtener las ciudades</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/ciudades'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/ciudades'</span>
 </code></pre></div>
 <blockquote>
 <p>json de respuesta</p>
@@ -2362,7 +2474,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Obtener las ciudades</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/sucursales'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/sucursales'</span>
 </code></pre></div>
 <blockquote>
 <p>json de respuesta</p>
@@ -2407,7 +2519,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Obtener las paqueterías</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/catalogo_clientes/paqueteria'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/paqueteria'</span>
 </code></pre></div>
 <blockquote>
 <p>json de respuesta</p>
@@ -2443,7 +2555,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Lista tus pedidos</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'http://api-cvaservices.test/api/v2/pedidos_web/lista_pedidos'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://apicvaservices.grupocva.com/api/v2/pedidos_web/lista_pedidos'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -2488,7 +2600,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Ver las ordenes de compra</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/pedidos_web/pedido_orden_compra'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/pedidos_web/pedido_orden_compra'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{
@@ -2516,7 +2628,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <blockquote>
 <p>Ver la información de las facturas</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/pedidos_web/consultar_factura'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/pedidos_web/consultar_factura'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{
@@ -2572,7 +2684,7 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <p>El web service recibe un JSON con el código de la factura. ejemplo (<strong>GB-111</strong>).</p>
 
 <p>En el ejemplo de respuesta se puede ver como es la estructura que regresa el endpoint.</p>
-<h2 id='consultar-pedido'>Consultar pedido</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/pedidos_web/consultar_pedido'</span> <span class="se">\</span>
+<h2 id='consultar-pedido'>Consultar pedido</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/pedidos_web/consultar_pedido'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{
