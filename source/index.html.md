@@ -50,7 +50,6 @@ Aunque podemos proveerle el catálogo completo para que se actualice cada que us
 > Peticíon para generar un token:
 
 ```shell
-# Asegurate de colocar las cabeceras correctas en la petición
 curl --location 'https://apicvaservices.grupocva.com/api/v2/user/login' \
     --header 'Content-Type: application/json' \
     --data '{
@@ -94,8 +93,8 @@ Como lo siguiente:
 <aside class="notice">
 Tienes que reemplazar <code>TU_API_TOKEN</code> con tu token personal.
 </aside>
-<aside class="warning">
-El token tiene una validez de <strong>1 hora</strong> desde su generación. Una vez que caduca, es necesario generar un nuevo token.
+<aside class="notice">
+Una vez generado el token, este tiene <strong>12 horas</strong> de vida desde su generación. Una vez que caduca, es necesario generar un nuevo token.
 </aside>
 
 # Filtro de productos
@@ -105,13 +104,8 @@ El token tiene una validez de <strong>1 hora</strong> desde su generación. Una 
 > Peticíon para obtener la lista de precios:
 
 ```shell
-# Obtiene el catalógo completo
 curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios' \
      --header 'Authorization: Bearer TU_API_TOKEN'
-
-# Obtiene las impresoras de la marca HP con su información del SAT
-curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=hp&grupo=impresoras&codigosat=true' \
-      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
 > La petición retorna un JSON como el siguiente:
@@ -183,10 +177,6 @@ De esta manera usted puede buscar de una forma más especifica lo que busca
 `GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=hp&grupo=impresoras&codigosat=true`
 
 ** *Esta petición retornará las impresoras de la marca HP, con su información SAT.*
-
-<aside class="notice">
-Es importante mencionar que la consulta <b>TOTAL</b> del catálogo <strong>NO</strong> está disponible de las <strong>9:00</strong> hasta <strong>19:00</strong> (Hora ciudad de México) por lo que se recomienda ser lo más preciso como le sea posible con sus búsquedas, debido a la carga que representa en la base de datos.
-</aside>
 
 ## Producto individual
 
@@ -315,7 +305,6 @@ marca | string |Marca que se desea búscar | null
 > Buscar productos por grupo
 
 ```shell
-# Obtiene los productos de la marca Acteck
 curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo=bocinas' \
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
@@ -506,10 +495,6 @@ Parametro | Tipo | Descripción | Valor por defecto
 --------- | ----------- | ----------- | -----------
 desc | string | Palabra clave que se buscará en la descripcion de los productos | null
 
-<aside class="warning">
-Este filtro está restringido y solo se puede utilizar fuera del horario laboral de CVA. En otras palabras, no está disponible 
-para su uso entre las 9:00 AM y las 7:00 PM, debido al ancho de banda que consume el utilizarlo.
-</aside>
 
 ## Por solución
 
@@ -673,7 +658,7 @@ Subir porcentaje de 16% al producto con clave PR-2586, lo que aumentará directa
 Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agregar el IVA en el porcentaje para contemplar el impuesto.
 </aside>
 
-### Aplicar descuento a lista de productos
+### Aplicar porcentaje a lista de productos
 
 Aplicar el paramerametro en consultas que retornan más de un nodo aumentará el porcentaje sobre el precio en todos los nodos de la respuesta.
 
@@ -1290,7 +1275,7 @@ curl  --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/l
       --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
-> La petición agrega a la respuesta JSON las llaves:
+> La petición retorna la respuesta JSON:
 
 ```json
 {
@@ -1339,10 +1324,8 @@ Obtener el producto con clave: **SPK-2093** con sus imágenes.
 
 ⚠️ No todos los productos tienen imágenes, por lo que algunos regresan el valor `null`
 
-<aside class="warning">
-<b>NO</b> se recomienda enviar este parámetro en consultas que devuelvan una lista extensa de productos, ya que esto puede <b>aumentar</b> 
-drásticamente el <b>tiempo de respuesta</b> de la API. Se aconseja utilizar este parámetro únicamente en consultas individuales para garantizar
-un rendimiento óptimo.
+<aside class="notice">
+Es importante mencionar que no todos los productos cuentan con imágenes, en estos casos se retorna <b>null</b> en el nodo imágenes.
 </aside>
 
 ## Dimensiones del producto
@@ -1587,7 +1570,7 @@ curl --location 'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/im
 }
 ```
 
-También tienes la opción de obtener las imágenes en la misma búsqueda del producto (véase [Imágenes](#imagenes)). Sin embargo, si usted solamente requiere las imágenes del producto, es mejor usar este endpoint, ya que es una consulta mejor optimizada.
+También tienes la opción de obtener las imágenes en la misma búsqueda del producto (véase [Imágenes](#imagenes)). Sin embargo, si usted solo requiere las imágenes del producto, es mejor usar este endpoint ya que hace una consulta directa a la base de datos, mientras que la otra manera obtiene los datos de la memoria caché y puede que no esten actualizados.
 
 ### Query parameters
 
@@ -1946,12 +1929,96 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 
 # Pedidos Web
 
+En esta sección usted podrá consultar la información de sus pedidos.
+
+## Crear pedido
+
+```shell
+curl --location 'http://api-cvaservices.test/api/v2/pedidos_web/crear_orden' \
+--header 'Authorization: Bearer 106|PySw9A9wd2S6JdVzqnmOez8UekPLuZLVuQDWX0Wa288a0e4a' \
+--header 'Content-Type: application/json' \
+--data '{
+    "num_oc": "ORDEN_001",
+    "paqueteria": 12,
+    "codigo_sucursal": 1,
+    "observaciones": "Sin observaciones",
+    "clave": 111,
+    "cantidad": 160,
+    "tipo_flete": "SF",
+    "calle": "Primavera",
+    "cp": 44900,
+    "numero": "2489",
+    "numero_interior": "2489",
+    "colonia": "Del Fresno",
+    "estado": 15,
+    "ciudad": 558,
+    "atencion": "Al cliente",
+    "productos": [
+        {
+            "clave": "PAQ-586",
+            "cantidad": 0
+        }
+    ]
+}'
+```
+> Ejemplo de respuesta
+
+```json
+{
+    "pedido": "NGB-1017980",
+    "total": 10,
+    "email_agente": "ytorres@grupocva.com",
+    "email_almacen": "valenzuelaj@grupocva.com"
+}
+```
+
+Para crear un pedido necesitas estar autenticado con un token, ya que el sistema lo necesita para saber cual usuario es el que está consultando. Véase ([Autenticación](#autenticacion)) para saber como generar tu token.
+
+En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.
+
+### Descripción del endpoint 
+
+Levanta pedido desde el endpoint.
+
+### Parámetros de la peticion (JSON)
+
+Parametro | Tipo | Descripción
+--------- | ----------- | -----------
+num_oc  | string | Número de oc en caso de que se requiera aparezca en tu facturación.
+paqueteria  | int | Clave de la paquetería de envío, véase ([Paqueterías](#paqueterias)).
+codigo_sucursal  | int | Clave sucursal del pedido, véase ([Sucursales](#sucursales)).
+observaciones  | string | Observaciones para el pedido.
+tipo_flete  | string | SF, FF, FS.
+calle  | string | Calle de envío.
+cp  | int | Código postal de envío.
+numero  | string | Número de envío (max 20 caracteres).
+numero_interior  | string | Número int de envío (max 20 caracteres). (max 20 caracteres).
+colonia  | string | colonia de envío.
+estado  | int | ID del estado de la dirección del envío, véase ([Catálogo de estados y ciudades](#ciudades)).
+ciudad  | int | ID de la ciudad de la dirección del envío, véase ([Catálogo de estados y ciudades](#ciudades)).
+atencion  | string | Con atención a quien
+productos  | array | array de objetos "producto"
+
+### Objeto producto
+llave | valor | tipo
+--------- | ----------- | -----------
+clave  | Clave CVA del producto | string
+cantidad  | Cantidad | int
+
+### Significado de cada estado para los fletes
+
+Sufijo | Significado
+--------- | -----------
+SF  | Sin flete
+FF  | Flete cobrado en la factura de CVA
+FS  | Flete cobrado en la factura de CVA Asegurado
+
 ## Listado
 
 > Lista tus pedidos
 
 ```shell
-curl --location --request POST 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/lista_pedidos' \
+curl --location 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/lista_pedidos' \
      --header 'Authorization: Bearer TU_API_TOKEN'
 ```
 
@@ -1993,8 +2060,15 @@ curl --location --request POST 'https://apicvaservices.grupocva.com/api/v2/pedid
 }
 ```
 
+Para listar tus pedidos necesitas estar autenticado con un token, ya que el sistema lo necesita para saber qué usuario es el que está consultando y entregarle su lista de pedidos. Consulta ([Autenticación](#autenticacion)) para saber como generar tu token.
 
-Obtiene los pedidos del usuario.
+En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.
+
+Asegúrate de cambiar `TU_API_TOKEN` por el token que te devolvió la consulta de autenticación.
+
+### Descripción
+
+Obtiene una lista con la información de los pedidos generados por el usuario.
 
 
 ## Pedido orden compra
@@ -2026,8 +2100,19 @@ curl --location 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/pedido_o
     "status": "ok"
 }
 ```
+Para listar tus pedidos necesitas estar autenticado con un token, ya que el sistema lo necesita para saber qué usuario es el que está consultando y entregarle su lista de pedidos. Consulta ([Autenticación](#autenticacion)) para saber como generar tu token.
 
-Devuelve los pedidos de la orden de compra.
+En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.
+
+### Descripción
+
+Devuelve una lista con las series de los pedidos asignados a la orden que se consulta.
+
+### Cuerpo de la petición (JSON)
+
+Parametro | Tipo | Descripción
+--------- | ----------- | -----------
+orden  | string | numero de orden de compra (serie-folio)
 
 ## Consultar información de facturas
 
@@ -2086,12 +2171,23 @@ curl --location 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/consulta
     "status": "ok"
 }
 ```
+Para listar tus pedidos necesitas estar autenticado con un token, ya que el sistema lo necesita para saber qué usuario es el que está consultando y entregarle su lista de pedidos. Consulta ([Autenticación](#autenticacion)) para saber como generar tu token.
+
+En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.
+
+### Descripción
 
 Devuelve los datos de la factura, así como los productos que vienen en la misma.
 
 El web service recibe un JSON con el código de la factura. ejemplo (__GB-111__).
 
 En el ejemplo de respuesta se puede ver como es la estructura que regresa el endpoint.
+
+### Parámetros de la peticion (JSON)
+
+Parametro | Tipo | Descripción
+--------- | ----------- | -----------
+factura  | string | numero de factura (serie-folio)
 
 ## Consultar pedido
 
@@ -2138,4 +2234,21 @@ curl --location 'https://apicvaservices.grupocva.com/api/v2/pedidos_web/consulta
 }
 ```
 
+Para listar tus pedidos necesitas estar autenticado con un token, ya que el sistema lo necesita para saber qué usuario es el que está consultando y entregarle su lista de pedidos. Consulta ([Autenticación](#autenticacion)) para saber como generar tu token.
+
+En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.
+
 Devuelve la información de un pedido
+
+### Significado de los status
+Valor | Descripción
+----------- | -----------
+PENDIENTE | Pedido pendiente de faturar
+CANCELADO | Pedido cancelado
+FACTURADO | Pedido ya facturado
+
+### Parámetros de la peticion (JSON)
+
+Parametro | Tipo | Descripción
+--------- | ----------- | -----------
+factura  | string | numero de pedido (serie-folio)

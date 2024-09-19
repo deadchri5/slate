@@ -447,6 +447,9 @@
             <a href="#pedidos-web" class="toc-h1 toc-link" data-title="Pedidos Web">Pedidos Web</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#crear-pedido" class="toc-h2 toc-link" data-title="Crear pedido">Crear pedido</a>
+                  </li>
+                  <li>
                     <a href="#listado" class="toc-h2 toc-link" data-title="Listado">Listado</a>
                   </li>
                   <li>
@@ -497,8 +500,7 @@
 <blockquote>
 <p>Peticíon para generar un token:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Asegurate de colocar las cabeceras correctas en la petición</span>
-curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/user/login'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/user/login'</span> <span class="se">\</span>
     <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s1">'{
         "user": "USUARIO",
@@ -556,20 +558,15 @@ curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices
 Tienes que reemplazar <code>TU_API_TOKEN</code> con tu token personal.
 </aside>
 
-<aside class="warning">
-El token tiene una validez de <strong>1 hora</strong> desde su generación. Una vez que caduca, es necesario generar un nuevo token.
+<aside class="notice">
+Una vez generado el token, este tiene <strong>12 horas</strong> de vida desde su generación. Una vez que caduca, es necesario generar un nuevo token.
 </aside>
 <h1 id='filtro-de-productos'>Filtro de productos</h1><h2 id='catalogo-completo'>Catálogo completo</h2>
 <blockquote>
 <p>Peticíon para obtener la lista de precios:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene el catalógo completo</span>
-curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
-
-<span class="c"># Obtiene las impresoras de la marca HP con su información del SAT</span>
-curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=hp&amp;grupo=impresoras&amp;codigosat=true'</span> <span class="se">\</span>
-      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
 <p>La petición retorna un JSON como el siguiente:</p>
@@ -697,10 +694,6 @@ curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservice
 <p><code>GET https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?marca=hp&amp;grupo=impresoras&amp;codigosat=true</code></p>
 
 <p>** <em>Esta petición retornará las impresoras de la marca HP, con su información SAT.</em></p>
-
-<aside class="notice">
-Es importante mencionar que la consulta <b>TOTAL</b> del catálogo <strong>NO</strong> está disponible de las <strong>9:00</strong> hasta <strong>19:00</strong> (Hora ciudad de México) por lo que se recomienda ser lo más preciso como le sea posible con sus búsquedas, debido a la carga que representa en la base de datos.
-</aside>
 <h2 id='producto-individual'>Producto individual</h2>
 <blockquote>
 <p>Buscar un producto en específico</p>
@@ -848,8 +841,7 @@ curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservice
 <blockquote>
 <p>Buscar productos por grupo</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Obtiene los productos de la marca Acteck</span>
-curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo=bocinas'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?grupo=bocinas'</span> <span class="se">\</span>
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -1048,11 +1040,6 @@ Ejemplo: una búsqueda genérica que contenga la palabra clave <strong>GAMING</s
 <td>null</td>
 </tr>
 </tbody></table>
-
-<aside class="warning">
-Este filtro está restringido y solo se puede utilizar fuera del horario laboral de CVA. En otras palabras, no está disponible 
-para su uso entre las 9:00 AM y las 7:00 PM, debido al ancho de banda que consume el utilizarlo.
-</aside>
 <h2 id='por-solucion'>Por solución</h2>
 <blockquote>
 <p>Buscar productos por solución</p>
@@ -1213,7 +1200,7 @@ curl  <span class="nt">--location</span> <span class="s1">'https://apicvaservice
 <aside class="notice">
 Los precios sin porcentaje se encuentran sin IVA, por lo que es recomendable agregar el IVA en el porcentaje para contemplar el impuesto.
 </aside>
-<h3 id='aplicar-descuento-a-lista-de-productos'>Aplicar descuento a lista de productos</h3>
+<h3 id='aplicar-porcentaje-a-lista-de-productos'>Aplicar porcentaje a lista de productos</h3>
 <p>Aplicar el paramerametro en consultas que retornan más de un nodo aumentará el porcentaje sobre el precio en todos los nodos de la respuesta.</p>
 
 <p><code>https://apicvaservices.grupocva.com/api/v2/catalogo_clientes/lista_precios?clave=PR-2586&amp;porcentaje=16</code></p>
@@ -1922,7 +1909,7 @@ Se aclara que el uso del tipo de cambio publicado es totalmente del dominio de C
       <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
-<p>La petición agrega a la respuesta JSON las llaves:</p>
+<p>La petición retorna la respuesta JSON:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10253052</span><span class="p">,</span><span class="w">
@@ -1977,10 +1964,8 @@ recomendable usar <a href="#imagenes-2">Imágenes</a>.</p>
 
 <p>⚠️ No todos los productos tienen imágenes, por lo que algunos regresan el valor <code>null</code></p>
 
-<aside class="warning">
-<b>NO</b> se recomienda enviar este parámetro en consultas que devuelvan una lista extensa de productos, ya que esto puede <b>aumentar</b> 
-drásticamente el <b>tiempo de respuesta</b> de la API. Se aconseja utilizar este parámetro únicamente en consultas individuales para garantizar
-un rendimiento óptimo.
+<aside class="notice">
+Es importante mencionar que no todos los productos cuentan con imágenes, en estos casos se retorna <b>null</b> en el nodo imágenes.
 </aside>
 <h2 id='dimensiones-del-producto'>Dimensiones del producto</h2>
 <blockquote>
@@ -2217,7 +2202,7 @@ Para consultar esta información es necesario enviar tu token de acceso.
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>También tienes la opción de obtener las imágenes en la misma búsqueda del producto (véase <a href="#imagenes">Imágenes</a>). Sin embargo, si usted solamente requiere las imágenes del producto, es mejor usar este endpoint, ya que es una consulta mejor optimizada.</p>
+<p>También tienes la opción de obtener las imágenes en la misma búsqueda del producto (véase <a href="#imagenes">Imágenes</a>). Sin embargo, si usted solo requiere las imágenes del producto, es mejor usar este endpoint ya que hace una consulta directa a la base de datos, mientras que la otra manera obtiene los datos de la memoria caché y puede que no esten actualizados.</p>
 <h3 id='query-parameters-23'>Query parameters</h3>
 <table><thead>
 <tr>
@@ -2551,11 +2536,173 @@ Para consultar este endpoint no se necesita estar autenticado con token.
 <aside class="success">
 Para consultar este endpoint no se necesita estar autenticado con token.
 </aside>
-<h1 id='pedidos-web'>Pedidos Web</h1><h2 id='listado'>Listado</h2>
+<h1 id='pedidos-web'>Pedidos Web</h1>
+<p>En esta sección usted podrá consultar la información de sus pedidos.</p>
+<h2 id='crear-pedido'>Crear pedido</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api-cvaservices.test/api/v2/pedidos_web/crear_orden'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer 106|PySw9A9wd2S6JdVzqnmOez8UekPLuZLVuQDWX0Wa288a0e4a'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+    "num_oc": "ORDEN_001",
+    "paqueteria": 12,
+    "codigo_sucursal": 1,
+    "observaciones": "Sin observaciones",
+    "clave": 111,
+    "cantidad": 160,
+    "tipo_flete": "SF",
+    "calle": "Primavera",
+    "cp": 44900,
+    "numero": "2489",
+    "numero_interior": "2489",
+    "colonia": "Del Fresno",
+    "estado": 15,
+    "ciudad": 558,
+    "atencion": "Al cliente",
+    "productos": [
+        {
+            "clave": "PAQ-586",
+            "cantidad": 0
+        }
+    ]
+}'</span>
+</code></pre></div>
+<blockquote>
+<p>Ejemplo de respuesta</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"pedido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NGB-1017980"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email_agente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ytorres@grupocva.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email_almacen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"valenzuelaj@grupocva.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Para crear un pedido necesitas estar autenticado con un token, ya que el sistema lo necesita para saber cual usuario es el que está consultando. Véase (<a href="#autenticacion">Autenticación</a>) para saber como generar tu token.</p>
+
+<p>En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.</p>
+<h3 id='descripcion-del-endpoint'>Descripción del endpoint</h3>
+<p>Levanta pedido desde el endpoint.</p>
+<h3 id='parametros-de-la-peticion-json'>Parámetros de la peticion (JSON)</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>num_oc</td>
+<td>string</td>
+<td>Número de oc en caso de que se requiera aparezca en tu facturación.</td>
+</tr>
+<tr>
+<td>paqueteria</td>
+<td>int</td>
+<td>Clave de la paquetería de envío, véase (<a href="#paqueterias">Paqueterías</a>).</td>
+</tr>
+<tr>
+<td>codigo_sucursal</td>
+<td>int</td>
+<td>Clave sucursal del pedido, véase (<a href="#sucursales">Sucursales</a>).</td>
+</tr>
+<tr>
+<td>observaciones</td>
+<td>string</td>
+<td>Observaciones para el pedido.</td>
+</tr>
+<tr>
+<td>tipo_flete</td>
+<td>string</td>
+<td>SF, FF, FS.</td>
+</tr>
+<tr>
+<td>calle</td>
+<td>string</td>
+<td>Calle de envío.</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>int</td>
+<td>Código postal de envío.</td>
+</tr>
+<tr>
+<td>numero</td>
+<td>string</td>
+<td>Número de envío (max 20 caracteres).</td>
+</tr>
+<tr>
+<td>numero_interior</td>
+<td>string</td>
+<td>Número int de envío (max 20 caracteres). (max 20 caracteres).</td>
+</tr>
+<tr>
+<td>colonia</td>
+<td>string</td>
+<td>colonia de envío.</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>int</td>
+<td>ID del estado de la dirección del envío, véase (<a href="#ciudades">Catálogo de estados y ciudades</a>).</td>
+</tr>
+<tr>
+<td>ciudad</td>
+<td>int</td>
+<td>ID de la ciudad de la dirección del envío, véase (<a href="#ciudades">Catálogo de estados y ciudades</a>).</td>
+</tr>
+<tr>
+<td>atencion</td>
+<td>string</td>
+<td>Con atención a quien</td>
+</tr>
+<tr>
+<td>productos</td>
+<td>array</td>
+<td>array de objetos &quot;producto&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='objeto-producto'>Objeto producto</h3>
+<table><thead>
+<tr>
+<th>llave</th>
+<th>valor</th>
+<th>tipo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clave</td>
+<td>Clave CVA del producto</td>
+<td>string</td>
+</tr>
+<tr>
+<td>cantidad</td>
+<td>Cantidad</td>
+<td>int</td>
+</tr>
+</tbody></table>
+<h3 id='significado-de-cada-estado-para-los-fletes'>Significado de cada estado para los fletes</h3>
+<table><thead>
+<tr>
+<th>Sufijo</th>
+<th>Significado</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SF</td>
+<td>Sin flete</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>Flete cobrado en la factura de CVA</td>
+</tr>
+<tr>
+<td>FS</td>
+<td>Flete cobrado en la factura de CVA Asegurado</td>
+</tr>
+</tbody></table>
+<h2 id='listado'>Listado</h2>
 <blockquote>
 <p>Lista tus pedidos</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://apicvaservices.grupocva.com/api/v2/pedidos_web/lista_pedidos'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/pedidos_web/lista_pedidos'</span> <span class="se">\</span>
      <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span>
 </code></pre></div>
 <blockquote>
@@ -2595,7 +2742,13 @@ Para consultar este endpoint no se necesita estar autenticado con token.
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Obtiene los pedidos del usuario.</p>
+<p>Para listar tus pedidos necesitas estar autenticado con un token, ya que el sistema lo necesita para saber qué usuario es el que está consultando y entregarle su lista de pedidos. Consulta (<a href="#autenticacion">Autenticación</a>) para saber como generar tu token.</p>
+
+<p>En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.</p>
+
+<p>Asegúrate de cambiar <code>TU_API_TOKEN</code> por el token que te devolvió la consulta de autenticación.</p>
+<h3 id='descripcion'>Descripción</h3>
+<p>Obtiene una lista con la información de los pedidos generados por el usuario.</p>
 <h2 id='pedido-orden-compra'>Pedido orden compra</h2>
 <blockquote>
 <p>Ver las ordenes de compra</p>
@@ -2623,7 +2776,25 @@ Para consultar este endpoint no se necesita estar autenticado con token.
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Devuelve los pedidos de la orden de compra.</p>
+<p>Para listar tus pedidos necesitas estar autenticado con un token, ya que el sistema lo necesita para saber qué usuario es el que está consultando y entregarle su lista de pedidos. Consulta (<a href="#autenticacion">Autenticación</a>) para saber como generar tu token.</p>
+
+<p>En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.</p>
+<h3 id='descripcion-2'>Descripción</h3>
+<p>Devuelve una lista con las series de los pedidos asignados a la orden que se consulta.</p>
+<h3 id='cuerpo-de-la-peticion-json'>Cuerpo de la petición (JSON)</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orden</td>
+<td>string</td>
+<td>numero de orden de compra (serie-folio)</td>
+</tr>
+</tbody></table>
 <h2 id='consultar-informacion-de-facturas'>Consultar información de facturas</h2>
 <blockquote>
 <p>Ver la información de las facturas</p>
@@ -2679,11 +2850,29 @@ Para consultar este endpoint no se necesita estar autenticado con token.
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<p>Para listar tus pedidos necesitas estar autenticado con un token, ya que el sistema lo necesita para saber qué usuario es el que está consultando y entregarle su lista de pedidos. Consulta (<a href="#autenticacion">Autenticación</a>) para saber como generar tu token.</p>
+
+<p>En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.</p>
+<h3 id='descripcion-3'>Descripción</h3>
 <p>Devuelve los datos de la factura, así como los productos que vienen en la misma.</p>
 
 <p>El web service recibe un JSON con el código de la factura. ejemplo (<strong>GB-111</strong>).</p>
 
 <p>En el ejemplo de respuesta se puede ver como es la estructura que regresa el endpoint.</p>
+<h3 id='parametros-de-la-peticion-json-2'>Parámetros de la peticion (JSON)</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>factura</td>
+<td>string</td>
+<td>numero de factura (serie-folio)</td>
+</tr>
+</tbody></table>
 <h2 id='consultar-pedido'>Consultar pedido</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://apicvaservices.grupocva.com/api/v2/pedidos_web/consultar_pedido'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer TU_API_TOKEN'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
@@ -2725,7 +2914,45 @@ Para consultar este endpoint no se necesita estar autenticado con token.
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<p>Para listar tus pedidos necesitas estar autenticado con un token, ya que el sistema lo necesita para saber qué usuario es el que está consultando y entregarle su lista de pedidos. Consulta (<a href="#autenticacion">Autenticación</a>) para saber como generar tu token.</p>
+
+<p>En la parte derecha tiene un ejemplo de como hacer una petición con curl a este endpoint.</p>
+
 <p>Devuelve la información de un pedido</p>
+<h3 id='significado-de-los-status'>Significado de los status</h3>
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PENDIENTE</td>
+<td>Pedido pendiente de faturar</td>
+</tr>
+<tr>
+<td>CANCELADO</td>
+<td>Pedido cancelado</td>
+</tr>
+<tr>
+<td>FACTURADO</td>
+<td>Pedido ya facturado</td>
+</tr>
+</tbody></table>
+<h3 id='parametros-de-la-peticion-json-3'>Parámetros de la peticion (JSON)</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>factura</td>
+<td>string</td>
+<td>numero de pedido (serie-folio)</td>
+</tr>
+</tbody></table>
 <h1 id='errores'>Errores</h1>
 <aside class="notice">
 Errores comúnes que puede tener el web service.
